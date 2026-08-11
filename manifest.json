@@ -1,0 +1,16 @@
+{
+  "name": "Ji Chicken Wembley",
+  "short_name": "Ji Chicken",
+  "description": "Halal Taiwanese fried chicken, fried to order at Boxpark Wembley. Pick your seasoning powder and build your order.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#14100E",
+  "theme_color": "#14100E",
+  "categories": ["food", "shopping"],
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

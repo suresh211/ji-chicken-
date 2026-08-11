@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ji Chicken Wembley">
+  <defs>
+    <radialGradient id="g" cx=".5" cy=".32" r=".75">
+      <stop offset="0" stop-color="#FF7A5C"/><stop offset="1" stop-color="#B01A10"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#14100E"/>
+  <!-- lantern -->
+  <line x1="256" y1="70" x2="256" y2="104" stroke="#F2B33D" stroke-width="6"/>
+  <rect x="214" y="104" width="84" height="16" rx="6" fill="#F2B33D"/>
+  <ellipse cx="256" cy="188" rx="86" ry="76" fill="url(#g)"/>
+  <path d="M256 116 v144 M206 128 q50 60 0 120 M306 128 q-50 60 0 120" stroke="#7d0f08" stroke-width="4" fill="none" opacity=".5"/>
+  <rect x="214" y="256" width="84" height="16" rx="6" fill="#F2B33D"/>
+  <line x1="256" y1="272" x2="256" y2="300" stroke="#F2B33D" stroke-width="6"/>
+  <!-- JI wordmark -->
+  <text x="256" y="410" text-anchor="middle" font-family="'Big Shoulders Display','Anton',Impact,sans-serif" font-weight="900" font-size="150" fill="#F7EFE0" letter-spacing="6">JI</text>
+  <text x="256" y="452" text-anchor="middle" font-family="'Space Mono',monospace" font-weight="700" font-size="26" letter-spacing="8" fill="#F2B33D">WEMBLEY</text>
+</svg>
