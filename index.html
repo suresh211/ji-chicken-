@@ -1,0 +1,1104 @@
+<!doctype html>
+<html lang="en" class="t-soy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ji Chicken Wembley — Taiwanese Fried Chicken at Boxpark</title>
+<meta name="description" content="Halal Taiwanese fried chicken, fried to order and dusted with the seasoning powder you pick. Boxpark Wembley, 1F Olympic Way, HA9 0NP. Open daily 12pm–9pm.">
+<meta name="theme-color" content="#14100E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Big+Shoulders+Display:wght@500;700;900&family=Karla:wght@400;500;700&family=Noto+Serif+TC:wght@700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ---- Ji palette: soy-dark, lantern red, fried gold, temple jade, steam paper ---- */
+  --ink:#14100E;
+  --ink-2:#1E1815;
+  --ink-3:#2A2220;
+  --lantern:#E63122;
+  --gold:#F2B33D;
+  --jade:#1F6F63;
+  --paper:#F7EFE0;
+  --plum:#6B1E3C;
+  --fg:#F7EFE0;            /* text + line colour            */
+  --fg-rgb:247,239,224;
+  --line:rgba(var(--fg-rgb),.14);
+  --glow:rgba(230,49,34,.20);   /* the warm haze behind the hero */
+  --barbg:rgba(20,16,14,.86);
+  --tkbg:#F7EFE0; --tkfg:#22160F; --tkaccent:#8A5A22; --tkjade:#155C4F; --tkart:#EADFC9;
+  --tagjade:#7FD4C2; --tagveg:#9FD07A;
+  /* seasoning powder: swapped by the powder picker */
+  --dust:#C9B79A;
+  --tint:#C9B79A;
+
+  --display:"Big Shoulders Display","Anton",Impact,sans-serif;
+  --body:"Karla",system-ui,sans-serif;
+  --han:"Noto Serif TC",serif;
+  --mono:"Space Mono",ui-monospace,monospace;
+
+  --pad:clamp(18px,5vw,64px);
+}
+/* ============ BACKGROUND OPTIONS — set the class on <html> ============
+   t-soy (default) · t-jade · t-oxblood · t-slate · t-paper
+   ==================================================================== */
+.t-jade{--ink:#0B1F1C;--ink-2:#122A26;--ink-3:#18332D;--glow:rgba(242,179,61,.16);--barbg:rgba(11,31,28,.88)}
+.t-oxblood{--ink:#210A0A;--ink-2:#2E1211;--ink-3:#3A1714;--glow:rgba(242,179,61,.20);--barbg:rgba(33,10,10,.88)}
+.t-slate{--ink:#12161C;--ink-2:#1A2027;--ink-3:#232A33;--glow:rgba(242,179,61,.14);--barbg:rgba(18,22,28,.88)}
+.t-paper{
+  --ink:#F2E7D1;--ink-2:#FBF5E8;--ink-3:#E7DAC0;
+  --fg:#22170F;--fg-rgb:34,23,15;
+  --gold:#A86C0C;--jade:#155C4F;--line:rgba(34,23,15,.16);
+  --glow:rgba(230,49,34,.10);--barbg:rgba(251,245,232,.9);
+  --tkbg:#1B120C;--tkfg:#F7EFE0;--tkaccent:#F2B33D;--tkjade:#7FD4C2;--tkart:#2A2220;
+  --tagjade:#12594C;--tagveg:#4A7526;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--ink);color:var(--fg);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(120% 60% at 50% -10%,var(--glow),transparent 60%);
+  background-repeat:no-repeat;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:12px;top:12px;z-index:99;background:var(--gold);color:var(--ink);padding:10px 14px;border-radius:2px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+}
+.eyebrow span{opacity:.5}
+h2.head{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(34px,6vw,64px);line-height:.92;letter-spacing:-.01em;margin:0 0 10px;
+}
+.han{font-family:var(--han);font-weight:700}
+.lede{max-width:56ch;color:rgba(var(--fg-rgb),.72);margin:0}
+
+/* ================= header ================= */
+.bar{
+  position:sticky;top:0;z-index:40;
+  background:var(--barbg);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.bar-in{display:flex;align-items:center;gap:18px;height:66px}
+.mark{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:auto}
+.mark b{
+  font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:.02em;
+  color:var(--fg);line-height:1;
+}
+.mark i{
+  font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);
+}
+.navlinks{display:flex;gap:22px;font-size:14px;letter-spacing:.04em;text-transform:uppercase;font-weight:700}
+.navlinks a{text-decoration:none;color:rgba(var(--fg-rgb),.7)}
+.navlinks a:hover{color:var(--gold)}
+.btn{
+  display:inline-block;background:var(--lantern);color:#fff;text-decoration:none;
+  font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;
+  padding:12px 20px;border:0;border-radius:2px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.12) inset, 0 8px 22px -10px rgba(230,49,34,.9);
+  transition:transform .15s ease, background .15s ease;
+}
+.btn:hover{background:#f0402f;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--fg);box-shadow:0 0 0 1px var(--line) inset}
+.btn-ghost:hover{background:rgba(var(--fg-rgb),.07)}
+.mininav{display:none}
+@media(max-width:860px){
+  .navlinks{display:none}
+  .mininav{
+    display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;
+    padding:0 var(--pad) 11px;border-top:1px solid var(--line);padding-top:11px;
+  }
+  .mininav::-webkit-scrollbar{display:none}
+  .mininav a{
+    text-decoration:none;white-space:nowrap;color:rgba(var(--fg-rgb),.72);
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  }
+  .bar-in{height:58px}
+}
+
+/* ================= hero ================= */
+.hero{position:relative;overflow:hidden;padding:clamp(28px,5vw,54px) 0 clamp(40px,6vw,80px)}
+.lanterns{position:absolute;inset:0 0 auto;width:100%;height:190px;pointer-events:none;opacity:.9}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(20px,4vw,48px);align-items:center;padding-top:70px}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;padding-top:96px}}
+.marquee{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(40px,6.4vw,78px);line-height:.9;letter-spacing:-.02em;margin:0 0 20px;max-width:13ch;
+}
+.marquee em{font-style:normal;color:var(--lantern);display:block}
+.marquee small{display:block;font-size:.34em;letter-spacing:.06em;color:var(--gold);margin-top:14px;font-weight:700}
+.hero p{color:rgba(var(--fg-rgb),.76);max-width:46ch;font-size:clamp(16px,1.5vw,19px)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:30px}
+.badge{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:7px 11px;border:1px solid var(--line);border-radius:2px;color:rgba(var(--fg-rgb),.8);
+}
+.badge.hal{border-color:currentColor;color:var(--tagjade)}
+.badge.star{border-color:rgba(242,179,61,.6);color:var(--gold)}
+.hero-art{position:relative;aspect-ratio:1/1;max-height:520px;margin-inline:auto;width:100%}
+.hero-art svg{width:100%;height:100%}
+
+/* ================= powder picker (signature) ================= */
+.powder{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink-2);padding:clamp(30px,5vw,52px) 0}
+.powder-in{display:grid;grid-template-columns:minmax(240px,.85fr) 1.15fr;gap:clamp(20px,4vw,50px);align-items:center}
+@media(max-width:860px){.powder-in{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  cursor:pointer;background:transparent;color:rgba(var(--fg-rgb),.78);
+  border:1px solid var(--line);border-radius:999px;padding:11px 16px 11px 12px;
+  font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.03em;
+  display:flex;align-items:center;gap:9px;transition:border-color .15s,color .15s,background .15s;
+}
+.chip:hover{border-color:rgba(var(--fg-rgb),.4);color:var(--fg)}
+.chip .dot{width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.4) inset}
+.chip[aria-pressed="true"]{background:rgba(var(--fg-rgb),.07);border-color:var(--tint);color:var(--fg)}
+.chip[aria-pressed="true"] .dot{box-shadow:0 0 0 3px rgba(var(--fg-rgb),.14)}
+.powder-note{font-family:var(--mono);font-size:12px;color:rgba(var(--fg-rgb),.5);margin:16px 0 0}
+.powder-note b{color:var(--tint);font-weight:700}
+
+/* ================= menu ================= */
+.menu{padding:clamp(44px,7vw,90px) 0 20px}
+.cat{margin:0 0 clamp(26px,4vw,44px)}
+.cat-head{display:flex;align-items:flex-end;gap:16px;border-bottom:2px solid var(--line);padding-bottom:12px;margin-bottom:26px;flex-wrap:wrap}
+.cat-head h3{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(24px,3.6vw,38px);line-height:1;margin:0;
+}
+.cat-head .zh{font-family:var(--han);font-size:15px;color:var(--gold);opacity:.85}
+.cat-head .n{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:rgba(var(--fg-rgb),.45);text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:clamp(14px,2vw,22px)}
+.card{
+  background:var(--ink-2);border:1px solid var(--line);border-radius:4px;overflow:hidden;
+  display:flex;flex-direction:column;position:relative;
+  opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease,border-color .2s;
+}
+.card.in{opacity:1;transform:none}
+.card:hover{border-color:rgba(242,179,61,.45)}
+.shot{position:relative;aspect-ratio:4/3;margin:0;background:var(--ink-3);overflow:hidden}
+.shot svg{position:absolute;inset:0;width:100%;height:100%}
+.shot .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card:hover .shot svg{transform:scale(1.04)}
+.shot svg{transition:transform .4s ease}
+.card-body{padding:15px 16px 18px;display:flex;flex-direction:column;gap:7px;flex:1}
+.card h4{font-family:var(--body);font-weight:700;font-size:16px;line-height:1.25;margin:0}
+.card .zh{font-family:var(--han);font-size:13px;color:var(--gold);opacity:.9;margin:0}
+.card p{margin:2px 0 0;font-size:13.5px;line-height:1.5;color:rgba(var(--fg-rgb),.6)}
+.card .foot{margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:10px}
+.price{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--fg)}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 7px;border-radius:2px;border:1px solid}
+.tag.halal{color:var(--tagjade);border-color:currentColor;opacity:.85}
+.tag.veg{color:var(--tagveg);border-color:currentColor;opacity:.85}
+.tag.pop{color:var(--gold);border-color:rgba(242,179,61,.5)}
+.tag.out{color:rgba(var(--fg-rgb),.5);border-color:var(--line)}
+.flag{
+  position:absolute;top:10px;left:10px;z-index:2;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--lantern);color:#fff;padding:5px 8px;border-radius:2px;
+}
+
+/* meal deal tickets */
+.tickets{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(14px,2vw,22px)}
+.ticket{
+  position:relative;display:grid;grid-template-columns:132px 1fr;
+  background:var(--tkbg);color:var(--tkfg);border-radius:4px;overflow:hidden;
+  opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;
+}
+.ticket.in{opacity:1;transform:none}
+.ticket .shot{aspect-ratio:auto;height:100%;background:var(--tkart)}
+.ticket-body{padding:15px 16px;display:flex;flex-direction:column;gap:6px}
+.ticket h4{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:19px;line-height:1;margin:0}
+.ticket .zh{font-family:var(--han);font-size:12px;color:var(--tkaccent);margin:0}
+.tk-note{margin:0;font-size:13.5px;opacity:.72}
+.ticket .foot{margin-top:auto;padding-top:10px;display:flex;align-items:center;gap:10px}
+.ticket .price{color:var(--tkfg)}
+.ticket .tag.halal{color:var(--tkjade);border-color:currentColor;opacity:.9}
+.ticket::after{
+  content:"";position:absolute;left:132px;top:0;bottom:0;width:2px;
+  background:repeating-linear-gradient(to bottom,var(--tkfg) 0 5px,transparent 5px 11px);opacity:.3;
+}
+@media(max-width:420px){
+  .ticket{grid-template-columns:1fr}
+  .ticket::after{display:none}
+  .ticket .shot{aspect-ratio:16/9}
+}
+
+/* ================= visit ================= */
+.visit{border-top:1px solid var(--line);margin-top:clamp(40px,6vw,80px);padding:clamp(44px,7vw,86px) 0}
+.visit-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,60px)}
+@media(max-width:860px){.visit-in{grid-template-columns:1fr}}
+.rows{margin:26px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.rows li{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.rows dt,.rows .k{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(var(--fg-rgb),.45);min-width:104px;flex:none;
+}
+.rows .v{font-size:15.5px}
+.rows .v b{font-weight:700}
+.hours{margin:0;font-family:var(--mono);font-size:15px}
+.map-card{align-self:start;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--ink-2)}
+.map-card svg{width:100%;height:auto}
+.map-card .cap{padding:14px 16px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:rgba(var(--fg-rgb),.55);text-transform:uppercase;border-top:1px solid var(--line)}
+
+/* ================= footer ================= */
+footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 54px}
+.foot-in{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+.foot-in .mark{margin-right:auto}
+.foot-in a.s{text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(var(--fg-rgb),.6)}
+.foot-in a.s:hover{color:var(--gold)}
+.small{width:100%;font-size:12.5px;color:rgba(var(--fg-rgb),.38);margin:22px 0 0;line-height:1.7}
+
+/* svg paint classes — the powder picker only repaints .dust */
+.dust{fill:var(--dust)}
+.art-bg{fill:var(--ink-3)}
+.map-bg{fill:var(--ink-2)}
+.shot svg,.hero-art svg,.lanterns,.map-card svg{color:var(--fg)}
+.crumb{fill:#4A2109;opacity:.4}
+.hi{fill:#fff;opacity:.16}
+
+
+/* ==================================================================
+   MOTION LAYER — hovers, scroll behaviour, entrances
+   ================================================================== */
+
+/* reading progress, lantern red into fried gold */
+.progress{
+  position:fixed;top:0;left:0;height:3px;width:100%;z-index:50;
+  background:linear-gradient(90deg,var(--lantern),var(--gold));
+  transform:scaleX(0);transform-origin:0 50%;
+}
+
+/* header compacts once you leave the hero */
+.bar{transition:box-shadow .3s ease,background .3s ease}
+.bar-in{transition:height .28s cubic-bezier(.2,.8,.2,1)}
+.bar.tight{box-shadow:0 12px 30px -18px rgba(0,0,0,.9)}
+.bar.tight .bar-in{height:54px}
+.bar.tight .mark b{font-size:25px}
+.mark b{transition:font-size .28s cubic-bezier(.2,.8,.2,1)}
+.navlinks a{position:relative;padding-bottom:3px;transition:color .2s ease}
+.navlinks a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold);
+  transform:scaleX(0);transform-origin:0 50%;transition:transform .3s cubic-bezier(.2,.8,.2,1);
+}
+.navlinks a:hover::after,.navlinks a.active::after{transform:scaleX(1)}
+.navlinks a.active{color:var(--gold)}
+
+/* buttons: light sweeps across on hover */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.32) 48%,transparent 66%);
+  transform:translateX(-120%);transition:transform .6s cubic-bezier(.3,.7,.2,1);
+}
+.btn:hover::before{transform:translateX(120%)}
+.btn:active{transform:translateY(1px) scale(.99)}
+
+/* hero: cursor-followed heat, floating art, parallax lanterns */
+.hero{--mx:70%;--my:35%}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(340px 340px at var(--mx) var(--my),rgba(242,179,61,.13),transparent 70%);
+  opacity:0;transition:opacity .5s ease;
+}
+.hero:hover::before{opacity:1}
+.hero-art{will-change:transform}
+.lanterns{will-change:transform}
+
+/* dish tiles: tilt, zoom, steam, re-dust */
+.card{transform-style:preserve-3d;will-change:transform}
+.card.in{transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .25s,box-shadow .3s,opacity .3s}
+.card.in:hover{box-shadow:0 26px 50px -28px rgba(0,0,0,.85);z-index:5}
+.shot::after{ /* glare that tracks the pointer */
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:3;
+  background:radial-gradient(220px 160px at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.16),transparent 70%);
+  opacity:0;transition:opacity .35s ease;
+}
+.card:hover .shot::after{opacity:1}
+.card:hover .shot svg{transform:scale(1.07)}
+.card h4{transition:color .2s ease}
+.card:hover h4{color:var(--gold)}
+.card .price{transition:transform .25s cubic-bezier(.2,.8,.2,1),color .2s}
+.card:hover .price{transform:translateX(3px)}
+.flag{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.card:hover .flag{transform:translateY(-2px) rotate(-2deg)}
+
+/* the wisps of steam only exist on hover */
+.wisps path{opacity:0}
+.card:hover .wisps path,.ticket:hover .wisps path{animation:wisp 2.6s ease-out infinite}
+.card:hover .wisps path:nth-child(2),.ticket:hover .wisps path:nth-child(2){animation-delay:.55s}
+.card:hover .wisps path:nth-child(3),.ticket:hover .wisps path:nth-child(3){animation-delay:1.2s}
+
+/* seasoning lands again on hover, and everywhere when you change powder */
+.card:hover .dust{animation:sprinkle .55s var(--d,0s) ease-out both}
+.dusting .dust{animation:sprinkle .8s var(--d,0s) cubic-bezier(.2,.9,.2,1) both}
+.chip .dot{transition:transform .3s cubic-bezier(.2,.9,.2,1),box-shadow .25s}
+.chip:hover .dot{transform:scale(1.25)}
+.chip[aria-pressed="true"] .dot{animation:pulse 2.4s ease-in-out infinite}
+.chip{transition:border-color .2s,color .2s,background .2s,transform .2s cubic-bezier(.2,.8,.2,1)}
+.chip:hover{transform:translateY(-2px)}
+#powderName,#powderDesc{transition:opacity .25s ease}
+.swap #powderName,.swap #powderDesc{opacity:0}
+
+/* tickets lift off the page like paper */
+.ticket{transition:opacity .5s ease,transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
+.ticket.in:hover{transform:translateY(-5px) rotate(-.5deg);box-shadow:0 26px 44px -24px rgba(0,0,0,.7)}
+.ticket .shot svg{transition:transform .5s ease}
+.ticket:hover .shot svg{transform:scale(1.08)}
+
+/* category rules draw themselves in */
+.cat-head{position:relative;border-bottom-color:transparent}
+.cat-head::after{
+  content:"";position:absolute;left:0;bottom:-2px;height:2px;width:100%;
+  background:linear-gradient(90deg,var(--lantern),var(--gold) 40%,var(--line) 40%);
+  transform:scaleX(0);transform-origin:0 50%;transition:transform 1s cubic-bezier(.2,.8,.2,1);
+}
+.cat.seen .cat-head::after{transform:scaleX(1)}
+
+/* night-market ticker */
+.ticker{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--ink-2);overflow:hidden;padding:13px 0;
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.ticker-track{display:flex;width:max-content;animation:slide 34s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker b{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:20px;letter-spacing:.06em;padding:0 22px;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1px rgba(var(--fg-rgb),.55);
+}
+.ticker b.solid{color:var(--gold);-webkit-text-stroke:0}
+.ticker i{color:var(--lantern);font-style:normal;align-self:center}
+.ticker .han{font-family:var(--han);font-size:17px;-webkit-text-stroke:0;color:var(--gold)}
+
+/* links in the visit list get an underline that grows */
+.rows .v a{text-decoration:none;background:linear-gradient(var(--gold),var(--gold)) 0 100%/0 1.5px no-repeat;transition:background-size .3s ease}
+.rows .v a:hover{background-size:100% 1.5px}
+.foot-in a.s{transition:color .2s ease,transform .2s ease;display:inline-block}
+.foot-in a.s:hover{transform:translateY(-2px)}
+.map-card svg{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.map-card:hover svg{transform:scale(1.03)}
+
+@keyframes wisp{
+  0%{opacity:0;transform:translateY(6px) scaleX(.7)}
+  25%{opacity:.75}
+  100%{opacity:0;transform:translateY(-26px) scaleX(1.5)}
+}
+@keyframes sprinkle{
+  0%{opacity:0;transform:translateY(-9px) scale(.4)}
+  60%{opacity:1}
+  100%{opacity:1;transform:none}
+}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(var(--fg-rgb),.14)}50%{box-shadow:0 0 0 7px rgba(var(--fg-rgb),.04)}}
+@keyframes slide{to{transform:translateX(-50%)}}
+@keyframes bubble{
+  0%{opacity:0;transform:translateY(0) scale(.5)}
+  30%{opacity:.8}
+  100%{opacity:0;transform:translateY(-90px) scale(1.15)}
+}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes lineUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes artIn{from{opacity:0;transform:scale(.9) rotate(-3deg)}to{opacity:1;transform:none}}
+
+/* entrances only where motion is welcome */
+@media (prefers-reduced-motion:no-preference){
+  .hero-grid > div > *{animation:lineUp .8s cubic-bezier(.2,.8,.2,1) both}
+  .hero-grid > div > :nth-child(1){animation-delay:.05s}
+  .hero-grid > div > :nth-child(2){animation-delay:.14s}
+  .hero-grid > div > :nth-child(3){animation-delay:.23s}
+  .hero-grid > div > :nth-child(4){animation-delay:.32s}
+  .hero-grid > div > :nth-child(5){animation-delay:.41s}
+  .hero-art{animation:artIn 1s cubic-bezier(.2,.8,.2,1) both .2s}
+  .hero-art svg{animation:floaty 7s ease-in-out infinite 1.2s}
+  .sizzle circle{animation:bubble 3.4s ease-out infinite}
+}
+@media (prefers-reduced-motion:reduce){.progress{display:none}}
+
+/* ---------- PREVIEW SWITCHER — delete this block to ship ---------- */
+.themebar{
+  position:fixed;z-index:60;bottom:14px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;
+  background:var(--barbg);backdrop-filter:blur(12px);border:1px solid var(--line);
+  box-shadow:0 12px 34px -14px rgba(0,0,0,.8);
+}
+.themebar span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.55;padding-right:2px}
+.themebar button{
+  width:26px;height:26px;border-radius:50%;cursor:pointer;padding:0;
+  border:1px solid rgba(var(--fg-rgb),.3);
+}
+.themebar button[aria-pressed="true"]{box-shadow:0 0 0 2px var(--gold);border-color:transparent}
+@media(max-width:520px){.themebar span{display:none}}
+/* ------------------- end preview switcher ------------------- */
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .card,.ticket{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+@keyframes sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+@keyframes rise{0%{opacity:0;transform:translateY(6px) scaleX(.9)}35%{opacity:.5}100%{opacity:0;transform:translateY(-46px) scaleX(1.5)}}
+@keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}
+.sway{transform-origin:top center;animation:sway 6s ease-in-out infinite}
+.steam{animation:rise 4.2s ease-out infinite}
+.bulb{animation:glow 3.4s ease-in-out infinite}
+</style>
+</head>
+<body>
+<a class="skip" href="#menu">Skip to the menu</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- shared gradients for every illustration -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <linearGradient id="crustG" x1="0" y1="0" x2=".35" y2="1">
+      <stop offset="0" stop-color="#F3BE63"/><stop offset=".55" stop-color="#D98A2B"/><stop offset="1" stop-color="#9C5314"/>
+    </linearGradient>
+    <linearGradient id="crustD" x1="0" y1="0" x2=".4" y2="1">
+      <stop offset="0" stop-color="#D99A3E"/><stop offset="1" stop-color="#7E3F0E"/>
+    </linearGradient>
+    <linearGradient id="cheeseG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE08A"/><stop offset="1" stop-color="#F0B12B"/>
+    </linearGradient>
+    <linearGradient id="prawnG" x1="0" y1="0" x2=".4" y2="1">
+      <stop offset="0" stop-color="#FFB08A"/><stop offset="1" stop-color="#D9552B"/>
+    </linearGradient>
+    <linearGradient id="jadeG" x1="0" y1="0" x2=".4" y2="1">
+      <stop offset="0" stop-color="#3E9C86"/><stop offset="1" stop-color="#17564C"/>
+    </linearGradient>
+    <linearGradient id="paperG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBF4E6"/><stop offset="1" stop-color="#E3D3B4"/>
+    </linearGradient>
+    <radialGradient id="lampG" cx=".5" cy=".35" r=".7">
+      <stop offset="0" stop-color="#FF7A5C"/><stop offset="1" stop-color="#B01A10"/>
+    </radialGradient>
+    <radialGradient id="fryLight" cx=".5" cy=".2" r=".9">
+      <stop offset="0" stop-color="rgba(242,179,61,.30)"/><stop offset="1" stop-color="rgba(242,179,61,0)"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="mark" href="#top"><b>JI</b><i>Wembley</i></a>
+    <nav class="navlinks" aria-label="Sections">
+      <a href="#powder">Powders</a>
+      <a href="#menu">Menu</a>
+      <a href="#deals">Meal deals</a>
+      <a href="#visit">Find us</a>
+    </nav>
+    <a class="btn" href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order now</a>
+  </div>
+  <nav class="mininav" aria-label="Sections">
+    <a href="#powder">Powders</a><a href="#menu">Chicken</a><a href="#menu">Seafood</a>
+    <a href="#deals">Meal deals</a><a href="#visit">Find us</a>
+  </nav>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <svg class="lanterns" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M-20 26 Q 300 74 620 34 T 1220 52" fill="none" stroke="currentColor" stroke-opacity=".22" stroke-width="2"/>
+    <g id="lanternRow"></g>
+  </svg>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Boxpark Wembley <span>/</span> Halal <span>/</span> Fried to order</p>
+      <h1 class="marquee">The night market<em>is one street</em>from the stadium
+        <small class="han">台式炸雞 · 溫布利</small>
+      </h1>
+      <p>Taiwanese fried chicken cut thick, dropped fresh, and dusted with the seasoning powder you pick at the counter. Three years of recipe work, one small kitchen on Olympic Way.</p>
+      <div class="hero-cta">
+        <a class="btn" href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order for collection</a>
+        <a class="btn btn-ghost" href="#menu">See the menu</a>
+      </div>
+      <div class="badges">
+        <span class="badge star">★ 4.7 · 284 reviews</span>
+        <span class="badge hal">Halal chicken</span>
+        <span class="badge">Daily 12–9pm</span>
+        <span class="badge">4 min from Wembley Park</span>
+      </div>
+    </div>
+    <div class="hero-art" id="heroArt" aria-hidden="true"></div>
+  </div>
+</section>
+
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickTrack"></div>
+</div>
+
+<section class="powder" id="powder">
+  <div class="wrap powder-in">
+    <div>
+      <p class="eyebrow">The last step <span>/</span> 調味粉</p>
+      <h2 class="head">Pick your<br>powder</h2>
+      <p class="lede">Everything comes out of the fryer plain. What makes it yours is the dust that goes on at the counter — pick one and the menu below gets seasoned with it.</p>
+    </div>
+    <div>
+      <div class="chips" id="chips" role="group" aria-label="Choose a seasoning powder"></div>
+      <p class="powder-note">Now dusting with <b id="powderName">salt &amp; pepper</b> — <span id="powderDesc">the house default, coarse white pepper and toasted salt.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="menu wrap" id="menu">
+  <p class="eyebrow">Fried to order <span>/</span> Nothing sits under a lamp</p>
+  <h2 class="head">The menu</h2>
+  <p class="lede">Chicken, seafood and sides, all coated and fried when you order. Add a powder to any of them.</p>
+  <div id="menuRoot" style="margin-top:clamp(28px,5vw,52px)"></div>
+</section>
+
+<section class="menu wrap" id="deals" style="padding-top:0">
+  <div class="cat-head">
+    <h3>Meal deals</h3><span class="zh">超值套餐</span>
+    <span class="n">Chicken + chips + drink</span>
+  </div>
+  <div class="tickets" id="dealRoot"></div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap visit-in">
+    <div>
+      <p class="eyebrow">Find us <span>/</span> HA9 0NP</p>
+      <h2 class="head">One unit, inside Boxpark</h2>
+      <p class="lede">We're on the ground floor of Boxpark Wembley, on the walk between Wembley Park station and the stadium steps. Order at the counter or ahead online for collection.</p>
+      <ul class="rows">
+        <li><span class="k">Address</span><span class="v"><b>1F Olympic Way</b>, Boxpark Wembley, London HA9&nbsp;0NP</span></li>
+        <li><span class="k">Open</span><span class="v"><b>Every day, 12pm – 9pm</b><br><span style="color:rgba(var(--fg-rgb),.55);font-size:14px">Match and event days run later — check Instagram</span></span></li>
+        <li><span class="k">Getting here</span><span class="v">Wembley Park (Jubilee &amp; Metropolitan) — 4 min walk<br>Wembley Stadium (Chiltern) — 6 min walk</span></li>
+        <li><span class="k">Delivery</span><span class="v"><a href="https://deliveroo.co.uk/menu/london/boxpark-wembley/ji-the-chicken-shop-wembley">Deliveroo</a> · <a href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order direct</a></span></li>
+      </ul>
+      <p style="margin-top:26px"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Ji+Chicken+Boxpark+Wembley+HA9+0NP">Open in Maps</a></p>
+    </div>
+    <div class="map-card">
+      <div id="mapArt" aria-hidden="true"></div>
+      <p class="cap">Olympic Way · Boxpark ground floor · Unit 1F</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <a class="mark" href="#top"><b>JI</b><i>Taiwanese fried chicken</i></a>
+      <a class="s" href="https://www.instagram.com/jichickens/">Instagram</a>
+      <a class="s" href="https://www.facebook.com/jichickens/">Facebook</a>
+      <a class="s" href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order</a>
+      <p class="small">
+        Five background options are built in — set <code>class="t-soy"</code>, <code>t-jade</code>, <code>t-oxblood</code>, <code>t-slate</code> or <code>t-paper</code> on the &lt;html&gt; tag, then delete the preview switcher block. Dish artwork on this page is drawn in code, so nothing ever loads broken. To use real photos, drop a JPG into <code>/images/</code> using the filename listed against each dish in the script and it will appear over the drawing automatically.<br>
+        Prices taken from Ji's Wembley delivery listing and may differ at the counter. Halal chicken; seafood and sides are fried in shared oil — ask us about allergens before ordering.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- PREVIEW SWITCHER — delete this div, its CSS block and its script to ship -->
+<div class="themebar" id="themebar"><span>Background</span></div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"Ji Chicken Wembley","servesCuisine":"Taiwanese","priceRange":"££",
+"address":{"@type":"PostalAddress","streetAddress":"1F Olympic Way, Boxpark Wembley","addressLocality":"London","postalCode":"HA9 0NP","addressCountry":"GB"},
+"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"12:00","closes":"21:00"}],
+"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","reviewCount":"284"},
+"sameAs":["https://www.instagram.com/jichickens/","https://www.facebook.com/jichickens/"],
+"hasMenu":"https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu"}
+</script>
+
+<script>
+/* =========================================================================
+   Ji Wembley — drawn-in-code dish art + menu rendering
+   Every dish gets a picture. If /images/<slug>.jpg exists it loads over the
+   drawing; if not, the drawing stays. Nothing renders as a broken image.
+   ========================================================================= */
+let UID = 0;
+const uid = p => `${p}${++UID}`;
+const rnd = seed => { let s = seed * 9301 % 233280; return () => { s = (s * 9301 + 49297) % 233280; return s / 233280; }; };
+
+/* organic fried-piece outline */
+function blobPath(cx, cy, rx, ry, seed, wob = .26, n = 11) {
+  const r = rnd(seed), pts = [];
+  for (let i = 0; i < n; i++) {
+    const a = i / n * Math.PI * 2, k = 1 - wob / 2 + r() * wob;
+    pts.push([cx + Math.cos(a) * rx * k, cy + Math.sin(a) * ry * k]);
+  }
+  const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+  let d = `M${mid(pts[n - 1], pts[0]).map(v => v.toFixed(1))}`;
+  for (let i = 0; i < n; i++) {
+    const m = mid(pts[i], pts[(i + 1) % n]);
+    d += `Q${pts[i][0].toFixed(1)} ${pts[i][1].toFixed(1)} ${m[0].toFixed(1)} ${m[1].toFixed(1)}`;
+  }
+  return d + 'Z';
+}
+/* crust texture + seasoning dust, clipped to the piece */
+function texture(cx, cy, rx, ry, seed, dustAmt = 9) {
+  const r = rnd(seed + 7); let s = '';
+  for (let i = 0; i < 14; i++) {
+    const a = r() * 6.28, d = Math.sqrt(r()) * .8;
+    s += `<circle class="crumb" cx="${(cx + Math.cos(a) * rx * d).toFixed(1)}" cy="${(cy + Math.sin(a) * ry * d).toFixed(1)}" r="${(1 + r() * 1.8).toFixed(1)}"/>`;
+  }
+  for (let i = 0; i < dustAmt; i++) {
+    const a = r() * 6.28, d = Math.sqrt(r()) * .85;
+    s += `<circle class="dust" style="--d:${(r() * .45).toFixed(2)}s" cx="${(cx + Math.cos(a) * rx * d).toFixed(1)}" cy="${(cy + Math.sin(a) * ry * d).toFixed(1)}" r="${(.7 + r() * 1.1).toFixed(1)}"/>`;
+  }
+  return s;
+}
+function piece(cx, cy, rx, ry, seed, fill = 'url(#crustG)', dust = 9) {
+  const c = uid('cp'), p = blobPath(cx, cy, rx, ry, seed, .34, 13);
+  return `<clipPath id="${c}"><path d="${p}"/></clipPath>
+  <path d="${p}" fill="${fill}" stroke="#5E2A08" stroke-width="1.2" stroke-opacity=".6"/>
+  <g clip-path="url(#${c})">${texture(cx, cy, rx, ry, seed, dust)}
+  <path d="${blobPath(cx + rx * .18, cy + ry * .3, rx, ry, seed + 3, .3, 13)}" fill="#7E3F0E" opacity=".18"/>
+  <ellipse cx="${cx - rx * .3}" cy="${cy - ry * .42}" rx="${rx * .34}" ry="${ry * .2}" class="hi"/></g>`;
+}
+/* greaseproof paper tray: back rim behind the food, front wall over it,
+   so every dish sits *in* something instead of floating */
+const trayBack = `<ellipse cx="100" cy="118" rx="52" ry="10" fill="#000" opacity=".3"/>
+  <path d="M44 98 L156 98 L149 106 L51 106 Z" fill="#CDBB99"/>`;
+const trayFront = `<path d="M40 100 L160 100 L149 134 L51 134 Z" fill="url(#paperG)" stroke="#B9A784" stroke-width="1"/>
+  <path d="M40 100 L160 100 L158.5 109 L41.5 109 Z" fill="#E63122" opacity=".82"/>
+  <path d="M51 134 L149 134" stroke="#C3AE88" stroke-width="1.5"/>`;
+const shell = (inner, tray = true) => `<svg viewBox="0 0 200 150" role="img" preserveAspectRatio="xMidYMid slice">
+  <rect width="200" height="150" class="art-bg"/>
+  <rect width="200" height="150" fill="url(#fryLight)"/>
+  ${tray ? trayBack : ''}${inner}
+  <g class="wisps">
+    <path d="M76 56 q11 -18 0 -32" stroke="currentColor" stroke-opacity=".5" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M100 48 q12 -20 0 -34" stroke="currentColor" stroke-opacity=".45" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M124 56 q11 -18 0 -30" stroke="currentColor" stroke-opacity=".4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+  ${tray ? trayFront : ''}</svg>`;
+
+/* ---- dish drawings ---- */
+const ART = {
+  cutlet: () => shell(piece(100, 78, 52, 40, 3, 'url(#crustG)', 14) +
+    `<path d="M62 62 Q100 52 140 64" stroke="#7E3F0E" stroke-width="1.6" fill="none" opacity=".5"/>`),
+  popcorn: () => shell(
+    [[76, 92, 5], [98, 96, 4], [120, 92, 3], [86, 76, 8], [110, 78, 9], [132, 82, 11], [64, 80, 12], [100, 62, 13], [124, 64, 14], [78, 62, 15]]
+      .map(([x, y, s]) => piece(x, y, 13, 11, s, 'url(#crustG)', 5)).join('')),
+  strips: () => shell(
+    [[70, 96, -18], [96, 92, 6], [122, 96, 14], [86, 72, -8], [112, 70, 4]]
+      .map(([x, y, rot], i) => `<g transform="rotate(${rot} ${x} ${y})">${piece(x, y, 27, 10, 20 + i, 'url(#crustG)', 7)}</g>`).join('')),
+  wings: () => shell(
+    [[74, 90, -12], [126, 90, 14], [100, 70, 2]].map(([x, y, rot], i) =>
+      `<g transform="rotate(${rot} ${x} ${y})">${piece(x - 10, y, 17, 12, 40 + i, 'url(#crustD)', 6)}${piece(x + 14, y - 4, 12, 9, 50 + i, 'url(#crustG)', 4)}
+      <rect x="${x + 22}" y="${y - 8}" width="9" height="6" rx="3" fill="#F2EAD8" opacity=".85"/></g>`).join('')),
+  skin: () => shell(
+    [[72, 94], [100, 98], [128, 94], [86, 78], [114, 76], [100, 62]].map(([x, y], i) =>
+      `<path d="M${x - 22} ${y} q8 -12 16 -2 q9 -13 17 -1 q8 -11 15 1 q-9 10 -16 3 q-9 9 -16 1 q-8 8 -16 -2z" fill="url(#crustD)" stroke="#5E2A08" stroke-opacity=".5" stroke-width="1"/>
+      <circle class="dust" cx="${x - 4}" cy="${y - 1}" r="1.2"/><circle class="dust" cx="${x + 8}" cy="${y + 1}" r="1"/>`).join('')),
+  gizzard: () => shell(
+    [[78, 92, 60], [104, 96, 61], [126, 90, 62], [90, 76, 63], [116, 74, 64]].map(([x, y, s]) =>
+      piece(x, y, 15, 11, s, 'url(#crustD)', 5)).join('') +
+    [[68, 78], [136, 84], [100, 62]].map(([x, y]) =>
+      `<ellipse cx="${x}" cy="${y}" rx="7" ry="5" fill="#F5E9C8" stroke="#C9A15A" stroke-width="1"/>`).join('')),
+  karaage: () => shell(
+    [[76, 92, 70], [102, 95, 71], [126, 90, 72], [88, 74, 73], [114, 72, 74], [100, 58, 75]].map(([x, y, s]) =>
+      piece(x, y, 16, 13, s, 'url(#crustG)', 6)).join('')),
+  thigh: () => shell(piece(100, 82, 56, 32, 80, 'url(#crustG)', 13) +
+    `<path d="M52 74 Q100 66 148 76" stroke="#7E3F0E" stroke-width="1.6" fill="none" opacity=".45"/>
+     <path d="M60 90 Q100 98 142 88" stroke="#7E3F0E" stroke-width="1.4" fill="none" opacity=".35"/>`),
+  drumstick: () => shell(
+    [[80, 84, -20], [120, 84, 18]].map(([x, y, rot], i) =>
+      `<g transform="rotate(${rot} ${x} ${y})">${piece(x, y + 4, 24, 20, 90 + i, 'url(#crustD)', 8)}
+      <rect x="${x - 5}" y="${y - 34}" width="10" height="26" rx="5" fill="#F5EFE0"/>
+      <circle cx="${x}" cy="${y - 34}" r="7" fill="#FBF6EA"/></g>`).join('')),
+  cheesy: () => shell(
+    piece(80, 80, 40, 34, 100, 'url(#crustG)', 11) +
+    `<path d="M112 66 q16 6 8 18 q-9 13 6 20" stroke="url(#cheeseG)" stroke-width="9" fill="none" stroke-linecap="round"/>` +
+    piece(142, 96, 26, 22, 101, 'url(#crustG)', 7) +
+    `<path d="M104 70 q10 10 4 20" stroke="#FFE08A" stroke-width="3" fill="none" opacity=".8"/>`),
+  squid: () => shell(
+    [[76, 92, 110], [104, 96, 111], [128, 90, 112], [90, 74, 113], [116, 72, 114]].map(([x, y, s]) => {
+      const c = uid('sq');
+      return `<clipPath id="${c}"><path d="${blobPath(x, y, 16, 15, s, .18)}"/></clipPath>
+      <path d="${blobPath(x, y, 16, 15, s, .18)}" fill="url(#crustG)" stroke="#5E2A08" stroke-width="1.2" stroke-opacity=".5"/>
+      <g clip-path="url(#${c})">${texture(x, y, 16, 15, s, 6)}</g>
+      <ellipse cx="${x}" cy="${y}" rx="5.5" ry="5" class="art-bg"/>`;
+    }).join('')),
+  octopus: () => shell(
+    [[68, 96, 8], [100, 98, -6], [132, 94, 14]].map(([x, y, rot], i) =>
+      `<g transform="rotate(${rot} ${x} ${y})">
+        <path d="M${x - 16} ${y} q6 -26 14 -30 q10 -5 14 6 q4 12 -2 24" fill="url(#crustD)" stroke="#5E2A08" stroke-opacity=".5" stroke-width="1.2"/>
+        ${[0, 1, 2, 3].map(k => `<circle cx="${x - 8 + k * 3}" cy="${y - 8 - k * 7}" r="2.6" fill="#C7773F" opacity=".9"/>`).join('')}
+        <circle class="dust" cx="${x + 4}" cy="${y - 14}" r="1.2"/></g>`).join('')),
+  crab: () => shell(
+    [[70, 96, -14], [96, 92, 4], [124, 96, 12], [96, 74, -6]].map(([x, y, rot]) =>
+      `<g transform="rotate(${rot} ${x} ${y})">
+        <rect x="${x - 26}" y="${y - 8}" width="52" height="16" rx="8" fill="#FBF3E4" stroke="#D8C6A6" stroke-width="1"/>
+        <path d="M${x - 26} ${y - 8} h52 a8 8 0 0 1 0 6 h-52z" fill="#E8532F"/>
+        <circle class="dust" cx="${x - 6}" cy="${y + 3}" r="1.2"/><circle class="dust" cx="${x + 10}" cy="${y + 1}" r="1"/></g>`).join('')),
+  prawn: () => shell(
+    [[74, 92, -10], [116, 92, 12], [96, 70, 2]].map(([x, y, rot], i) =>
+      `<g transform="rotate(${rot} ${x} ${y})">
+        <path d="M${x - 22} ${y + 6} q2 -26 22 -28 q20 -2 20 16 q0 14 -14 16" fill="url(#prawnG)" stroke="#A33A16" stroke-width="1.2" stroke-opacity=".6"/>
+        <path d="M${x - 24} ${y + 8} l-9 8 l11 1 l-4 8 l12 -9z" fill="#F2B33D" opacity=".9"/>
+        ${[0, 1, 2].map(k => `<path d="M${x - 12 + k * 11} ${y - 16} q4 12 0 20" stroke="#A33A16" stroke-width="1.4" fill="none" opacity=".45"/>`).join('')}
+        <circle class="dust" cx="${x}" cy="${y - 6}" r="1.3"/><circle class="dust" cx="${x + 12}" cy="${y - 2}" r="1.1"/></g>`).join('')),
+  chips: () => shell(
+    [[-14, 68, 100], [-4, 74, 106], [6, 66, 96], [16, 76, 104], [26, 70, 98]].map(([dx, y, len], i) =>
+      `<g transform="rotate(${-16 + i * 8} ${100 + dx} ${y + 20})">
+        <rect x="${96 + dx}" y="${y - 8}" width="13" height="${len - 34}" rx="4" fill="url(#crustG)" stroke="#8C4A10" stroke-width="1" stroke-opacity=".5"/>
+        <circle class="dust" cx="${102 + dx}" cy="${y + 8}" r="1.3"/><circle class="dust" cx="${100 + dx}" cy="${y + 30}" r="1.1"/></g>`).join('')),
+  sweetpotato: () => shell(
+    [[-16, 66, 62], [-2, 72, 68], [12, 64, 60], [26, 74, 66]].map(([dx, y, len], i) =>
+      `<g transform="rotate(${-14 + i * 9} ${100 + dx} ${y + 20})">
+        <rect x="${94 + dx}" y="${y - 6}" width="17" height="${len}" rx="5" fill="#E6892E" stroke="#A9500F" stroke-width="1"/>
+        <rect x="${97 + dx}" y="${y - 3}" width="11" height="${len - 6}" rx="4" fill="#F2A544" opacity=".7"/>
+        <circle class="dust" cx="${103 + dx}" cy="${y + 14}" r="1.4"/></g>`).join('')),
+  lotus: () => shell(
+    [[74, 90, 130], [104, 94, 131], [128, 86, 132], [92, 72, 133]].map(([x, y, s]) => {
+      const holes = [0, 1, 2, 3, 4, 5].map(k => {
+        const a = k / 6 * 6.28;
+        return `<circle cx="${(x + Math.cos(a) * 8).toFixed(1)}" cy="${(y + Math.sin(a) * 8).toFixed(1)}" r="3" class="art-bg"/>`;
+      }).join('');
+      return `<circle cx="${x}" cy="${y}" r="17" fill="#F0DDB6" stroke="#C79A54" stroke-width="1.4"/>
+      ${holes}<circle cx="${x}" cy="${y}" r="3.2" class="art-bg"/>
+      <circle class="dust" cx="${x - 12}" cy="${y - 4}" r="1.4"/><circle class="dust" cx="${x + 11}" cy="${y + 6}" r="1.2"/>`;
+    }).join('')),
+  tofu: () => shell(
+    [[76, 92], [106, 96], [128, 86], [94, 72]].map(([x, y], i) =>
+      `<g><rect x="${x - 16}" y="${y - 14}" width="32" height="28" rx="3" fill="url(#crustG)" stroke="#8C4A10" stroke-width="1.2" stroke-opacity=".55" transform="rotate(${-6 + i * 4} ${x} ${y})"/>
+      <rect x="${x - 11}" y="${y - 9}" width="22" height="18" rx="2" fill="#FBF0D6" opacity=".55" transform="rotate(${-6 + i * 4} ${x} ${y})"/>
+      <circle class="dust" cx="${x - 4}" cy="${y - 4}" r="1.4"/><circle class="dust" cx="${x + 7}" cy="${y + 5}" r="1.2"/></g>`).join('') +
+    `<path d="M60 66 q6 -12 0 -20" class="steam" stroke="currentColor" stroke-opacity=".5" stroke-width="2.5" fill="none" stroke-linecap="round"/>`),
+  drink: () => shell(
+    `<rect x="70" y="34" width="60" height="86" rx="10" fill="#B8271C"/>
+     <rect x="70" y="34" width="60" height="86" rx="10" fill="url(#lampG)" opacity=".5"/>
+     <rect x="78" y="30" width="44" height="8" rx="4" fill="#D9D4CB"/>
+     <rect x="70" y="66" width="60" height="20" fill="#F7EFE0" opacity=".92"/>
+     <text x="100" y="81" text-anchor="middle" font-family="Space Mono, monospace" font-size="12" fill="#B8271C">330ml</text>
+     <ellipse cx="100" cy="124" rx="42" ry="7" fill="#000" opacity=".4"/>
+     <rect x="40" y="124" width="120" height="4" rx="2" fill="#CDBB99" opacity=".7"/>`, false),
+  combo: () => shell(
+    piece(70, 84, 32, 28, 200, 'url(#crustG)', 10) +
+    [[0, 62], [11, 68], [22, 60]].map(([dx, len], i) =>
+      `<g transform="rotate(${-10 + i * 10} ${118 + dx} ${96})">
+        <rect x="${114 + dx}" y="${96 - len + 20}" width="12" height="${len - 22}" rx="4" fill="url(#crustG)" stroke="#8C4A10" stroke-width="1" stroke-opacity=".5"/>
+        <circle class="dust" cx="${120 + dx}" cy="${96 - len + 40}" r="1.2"/></g>`).join('') +
+    `<path d="M156 62 h26 l-4 52 h-18z" fill="#B8271C"/><rect x="154" y="58" width="30" height="7" rx="3" fill="#F7EFE0"/>
+     <rect x="176" y="30" width="4" height="30" rx="2" fill="#F7EFE0" transform="rotate(12 178 45)"/>`)
+};
+
+/* ---- seasoning powders ---- */
+const POWDERS = [
+  { id: 'sp', name: 'salt & pepper', hex: '#D8CDB6', desc: 'the house default — coarse white pepper and toasted salt.' },
+  { id: 'plum', name: 'plum', hex: '#B0567E', desc: 'sour-sweet preserved plum. The one to get on sweet potato.' },
+  { id: 'chilli', name: 'chilli', hex: '#E8533A', desc: 'dry chilli and five spice. Builds slowly, then stays.' },
+  { id: 'seaweed', name: 'seaweed', hex: '#5FA37E', desc: 'roasted nori ground fine — savoury, a little smoky.' },
+  { id: 'garlic', name: 'garlic', hex: '#EBCF7A', desc: 'toasted garlic powder. Best on gizzards and wings.' }
+];
+
+/* ---- menu data: edit here. photo = /images/<file> when you have real shots ---- */
+const MENU = [
+  {
+    cat: 'Classic Taiwanese fried chicken', zh: '经典台式炸鸡', note: 'Fried to order',
+    items: [
+      { n: 'Taiwanese Crispy Chicken Breast', zh: '臺灣經典雞排', p: '12.00', d: 'Taiwan\'s most-ordered street food. Whole breast, crumbly crust, juicy through the middle.', art: 'cutlet', tags: ['halal', 'pop'], flag: 'Best seller', slug: 'chicken-breast' },
+      { n: 'Taiwanese Chicken Popcorn', zh: '台灣經典鹹酥雞', p: '9.50', d: 'Marinated, cut small, fried till the edges go craggy. The bag empties fast.', art: 'popcorn', tags: ['pop'], slug: 'popcorn-chicken' },
+      { n: 'Volcanic Cheesy Chicken', zh: '爆漿起司雞排', p: '12.50', d: 'A breast folded around a block of cheese and fried until it oozes on the first tear.', art: 'cheesy', tags: ['halal'], flag: 'Cheese pull', slug: 'volcanic-cheesy-chicken' },
+      { n: 'Fried Boneless Chicken Thigh', zh: '無骨雞腿排', p: '10.00', d: 'Thigh pounded out to steak size — fattier than breast, so it stays juicier.', art: 'thigh', tags: ['halal'], slug: 'boneless-thigh' },
+      { n: 'Crunchy Chicken Strips', zh: '台式雞柳條', p: '9.50', d: 'Marinated strips fried to a hard crunch. Easiest thing to eat walking.', art: 'strips', tags: ['halal'], slug: 'chicken-strips' },
+      { n: 'Crispy Chicken Wings', zh: '脆炸鸡翅', p: '9.50', d: 'Seasoned and fried to gold, straight into the powder.', art: 'wings', tags: ['halal'], slug: 'chicken-wings' },
+      { n: 'Karaage Chicken', zh: '日式炸鸡', p: '9.50', d: 'Japanese-style chunks, lighter coating, sharper crunch.', art: 'karaage', tags: [], slug: 'karaage' },
+      { n: 'Crispy Chicken Skin', zh: '脆炸雞皮', p: '9.50', d: 'The best part of fried chicken, served on its own. Shatters.', art: 'skin', tags: ['pop'], slug: 'chicken-skin' },
+      { n: 'Garlic Chicken Gizzard', zh: '香蒜鷄胗', p: '9.50', d: 'Fried to a proper snap and finished with toasted garlic. A night-market regular.', art: 'gizzard', tags: ['pop'], slug: 'gizzard' },
+      { n: 'Crispy Chicken Thigh on Bone', zh: '金酥雞腿', p: '12.50', d: 'Two pieces, bone in, crust all the way round.', art: 'drumstick', tags: ['halal', 'out'], slug: 'thigh-on-bone' }
+    ]
+  },
+  {
+    cat: 'Taiwanese fried seafood', zh: '台式炸海鮮', note: 'Light batter, hot oil',
+    items: [
+      { n: 'Crispy Squid', zh: '脆炸魷魚', p: '11.50', d: 'Thin batter, quick fry — crunch outside, still tender in the ring.', art: 'squid', tags: [], slug: 'crispy-squid' },
+      { n: 'Crispy Octopus', zh: '脆炸八爪鱼', p: '10.50', d: 'Whole small legs, suckers and all. Chewy in the right way.', art: 'octopus', tags: [], slug: 'crispy-octopus' },
+      { n: 'Crispy King Prawn', zh: '脆炸大蝦', p: '10.50', d: 'King prawns in a light coat, sweet under the crust.', art: 'prawn', tags: [], slug: 'king-prawn' },
+      { n: 'Crunchy Crab Sticks', zh: '脆蟹肉棒', p: '7.95', d: 'Fried till the outside crisps and the inside goes soft and sweet.', art: 'crab', tags: [], slug: 'crab-sticks' }
+    ]
+  },
+  {
+    cat: 'Savoury sides', zh: '台式咸味配菜', note: 'Add a powder',
+    items: [
+      { n: 'Taiwanese Style Chips', zh: '台式薯條', p: '4.95', d: 'Thick-cut and double-fried. Ask for salt and pepper on them.', art: 'chips', tags: [], slug: 'chips' },
+      { n: 'Fried Sweet Potatoes', zh: '酥炸地瓜', p: '7.95', d: 'Chunky, velvety inside. Plum powder turns these into pudding.', art: 'sweetpotato', tags: ['veg'], slug: 'sweet-potato' },
+      { n: 'Crispy Lotus Root Chips', zh: '脆炸藕片', p: '8.95', d: 'Sliced thin and fried to a crisp lace. For serious crunch people.', art: 'lotus', tags: ['pop'], slug: 'lotus-root' },
+      { n: 'Crispy Fried Tofu', zh: '酥炸豆腐', p: '8.50', d: 'Crust on the outside, silk in the middle.', art: 'tofu', tags: ['veg'], slug: 'fried-tofu' }
+    ]
+  },
+  {
+    cat: 'Drinks', zh: '飲料', note: 'Cold from the fridge',
+    items: [
+      { n: 'Coke', zh: '可樂', p: '2.50', d: '330ml can.', art: 'drink', tags: [], slug: 'coke' },
+      { n: 'Diet Coke', zh: '無糖可樂', p: '2.50', d: '330ml can.', art: 'drink', tags: [], slug: 'diet-coke' },
+      { n: 'Water', zh: '礦泉水', p: '2.50', d: '500ml bottle.', art: 'drink', tags: [], slug: 'water' }
+    ]
+  }
+];
+
+const DEALS = [
+  { n: 'Chicken Breast + Popcorn Chicken', zh: '臺灣雞排 + 雞米花', p: '15.50', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-popcorn', d: 'Both bestsellers, one bag. Feeds two if you\'re being polite.' },
+  { n: 'Volcanic Cheesy + Chips + Drink', zh: '爆漿起司雞排+台式薯條+軟飲', p: '16.50', art: 'combo', tags: ['halal'], slug: 'deal-cheesy', d: 'The full set with the cheese-filled breast.' },
+  { n: 'Popcorn Chicken + Chips + Drink', zh: '台灣經典鹹酥雞+薯條+軟飲', p: '14.50', art: 'combo', tags: [], slug: 'deal-popcorn', d: 'The easy one. Everything shareable.' },
+  { n: 'Boneless Thigh + Chips + Drink', zh: '無骨雞腿排+台式薯條+軟飲', p: '14.50', art: 'combo', tags: ['halal'], slug: 'deal-thigh', d: 'Juiciest cut, full meal.' },
+  { n: 'Crispy Squid + Chips + Drink', zh: '脆炸魷魚+台式薯條+軟飲', p: '15.50', art: 'combo', tags: ['halal'], slug: 'deal-squid', d: 'For when you want seafood instead.' },
+  { n: 'King Prawns + Chips + Drink', zh: '脆皮大蝦+台式薯條+軟飲', p: '14.50', art: 'combo', tags: ['halal'], slug: 'deal-prawn', d: 'Sweet prawns, salty chips.' },
+  { n: 'Crispy Octopus + Chips + Drink', zh: '脆炸八爪魚+台式薯條+軟飲', p: '15.50', art: 'combo', tags: ['halal'], slug: 'deal-octopus', d: 'Chewy, crunchy, cold drink.' },
+  { n: 'Chicken Breast + Strips (3pc)', zh: '臺灣雞排 + 雞柳條', p: '15.50', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-strips', d: 'Breast plus three strips for the table.' }
+];
+
+/* ---- render ---- */
+const TAGTXT = { halal: 'Halal', veg: 'Veg', pop: 'Popular', out: 'Sold out today' };
+
+function shotEl(item) {
+  const fig = document.createElement('figure');
+  fig.className = 'shot';
+  fig.innerHTML = (ART[item.art] || ART.popcorn)();
+  fig.querySelector('svg').setAttribute('aria-label', item.n);
+  const img = document.createElement('img');
+  img.className = 'photo'; img.alt = item.n; img.loading = 'lazy';
+  img.src = `images/${item.slug}.jpg`;
+  img.onerror = () => img.remove();          // no photo yet → the drawing stays
+  fig.appendChild(img);
+  return fig;
+}
+function tagHTML(tags) {
+  return tags.map(t => `<span class="tag ${t}">${TAGTXT[t]}</span>`).join('');
+}
+
+const menuRoot = document.getElementById('menuRoot');
+MENU.forEach(sec => {
+  const wrap = document.createElement('section');
+  wrap.className = 'cat';
+  wrap.innerHTML = `<div class="cat-head"><h3>${sec.cat}</h3><span class="zh">${sec.zh}</span>
+    <span class="n">${sec.note} · ${sec.items.length} items</span></div><div class="grid"></div>`;
+  const grid = wrap.querySelector('.grid');
+  sec.items.forEach(it => {
+    const c = document.createElement('article');
+    c.className = 'card';
+    if (it.flag) c.insertAdjacentHTML('afterbegin', `<span class="flag">${it.flag}</span>`);
+    c.appendChild(shotEl(it));
+    c.insertAdjacentHTML('beforeend', `<div class="card-body">
+      <h4>${it.n}</h4><p class="zh">${it.zh}</p><p>${it.d}</p>
+      <div class="foot"><span class="price">£${it.p}</span>${tagHTML(it.tags)}</div></div>`);
+    grid.appendChild(c);
+  });
+  menuRoot.appendChild(wrap);
+});
+
+const dealRoot = document.getElementById('dealRoot');
+DEALS.forEach(d => {
+  const t = document.createElement('article');
+  t.className = 'ticket';
+  t.appendChild(shotEl(d));
+  t.insertAdjacentHTML('beforeend', `<div class="ticket-body">
+    <h4>${d.n}</h4><p class="zh">${d.zh}</p>
+    <p class="tk-note">${d.d}</p>
+    <div class="foot"><span class="price">£${d.p}</span>${tagHTML(d.tags)}</div></div>`);
+  dealRoot.appendChild(t);
+});
+
+/* ---- powder picker ---- */
+const chips = document.getElementById('chips');
+POWDERS.forEach((p, i) => {
+  const b = document.createElement('button');
+  b.className = 'chip'; b.type = 'button';
+  b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+  b.innerHTML = `<span class="dot" style="background:${p.hex}"></span>${p.name}`;
+  b.onclick = () => {
+    document.documentElement.style.setProperty('--dust', p.hex);
+    document.documentElement.style.setProperty('--tint', p.hex);
+    setTimeout(() => {
+      document.getElementById('powderName').textContent = p.name;
+      document.getElementById('powderDesc').textContent = p.desc;
+    }, 130);
+    [...chips.children].forEach(c => c.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', 'true');
+    /* every dish gets dusted again, right down the page */
+    if (!matchMedia('(prefers-reduced-motion:reduce)').matches) {
+      const d = document.body;
+      d.classList.remove('dusting'); void d.offsetWidth; d.classList.add('dusting');
+      const note = document.querySelector('.powder-note');
+      note.classList.add('swap'); setTimeout(() => note.classList.remove('swap'), 260);
+    }
+  };
+  chips.appendChild(b);
+});
+
+/* ---- hero art: lanterns + one big cutlet under a fry light ---- */
+document.getElementById('heroArt').innerHTML = `
+<svg viewBox="0 0 460 460" aria-hidden="true">
+  <circle cx="230" cy="240" r="196" fill="url(#fryLight)"/>
+  <g class="sizzle" fill="var(--gold)">
+    <circle cx="150" cy="330" r="4" opacity=".0"/><circle cx="196" cy="352" r="2.6" opacity="0" style="animation-delay:.9s"/>
+    <circle cx="268" cy="344" r="3.4" opacity="0" style="animation-delay:1.7s"/><circle cx="312" cy="326" r="2.2" opacity="0" style="animation-delay:2.5s"/>
+    <circle cx="234" cy="360" r="3" opacity="0" style="animation-delay:3.1s"/>
+  </g>
+  <circle cx="230" cy="240" r="168" fill="none" stroke="currentColor" stroke-opacity=".12" stroke-width="1"/>
+  <circle cx="230" cy="240" r="196" fill="none" stroke="rgba(230,49,34,.35)" stroke-width="1"/>
+  <g class="steam"><path d="M172 118 q14 -26 0 -50" stroke="currentColor" stroke-opacity=".4" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+  <g class="steam" style="animation-delay:1.4s"><path d="M230 104 q16 -30 0 -56" stroke="currentColor" stroke-opacity=".38" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+  <g class="steam" style="animation-delay:2.6s"><path d="M290 120 q14 -26 0 -48" stroke="currentColor" stroke-opacity=".32" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+  <ellipse cx="230" cy="398" rx="152" ry="20" fill="#000" opacity=".5"/>
+  <path d="M112 274 L348 274 L340 292 L120 292 Z" fill="#B9A784"/>
+  ${piece(230, 210, 126, 92, 999, 'url(#crustG)', 40)}
+  <path d="M124 176 Q230 152 336 182" stroke="#7E3F0E" stroke-width="4" fill="none" opacity=".35"/>
+  <path d="M138 244 Q230 274 320 240" stroke="#7E3F0E" stroke-width="3" fill="none" opacity=".28"/>
+  <path d="M100 282 L360 282 L332 396 L128 396 Z" fill="url(#paperG)" stroke="#B9A784" stroke-width="2"/>
+  <path d="M100 282 L360 282 L357 306 L103 306 Z" fill="#E63122" opacity=".8"/>
+  <path d="M128 396 L332 396" stroke="#C3AE88" stroke-width="3"/>
+  <text x="230" y="352" text-anchor="middle" font-family="Big Shoulders Display, Anton, sans-serif" font-weight="900" font-size="42" letter-spacing="4" fill="#22160F" opacity=".22">JI 台式</text>
+</svg>`;
+
+const row = document.getElementById('lanternRow');
+[130, 300, 470, 640, 810, 980, 1120].forEach((x, i) => {
+  const y = 34 + Math.sin(i * 1.1) * 16;
+  row.insertAdjacentHTML('beforeend', `
+    <g class="sway" style="animation-delay:${(i * .45).toFixed(2)}s;transform-origin:${x}px ${y}px">
+      <line x1="${x}" y1="${y}" x2="${x}" y2="${y + 16}" stroke="currentColor" stroke-opacity=".3" stroke-width="1.5"/>
+      <ellipse cx="${x}" cy="${y + 38}" rx="19" ry="23" fill="url(#lampG)"/>
+      <rect x="${x - 8}" y="${y + 13}" width="16" height="5" rx="2" fill="#F2B33D"/>
+      <rect x="${x - 8}" y="${y + 58}" width="16" height="5" rx="2" fill="#F2B33D"/>
+      <line x1="${x}" y1="${y + 63}" x2="${x}" y2="${y + 76}" stroke="#F2B33D" stroke-width="1.5"/>
+      <ellipse class="bulb" cx="${x}" cy="${y + 38}" rx="19" ry="23" fill="#FF9E7A" opacity=".5" style="animation-delay:${(i * .7).toFixed(2)}s"/>
+    </g>`);
+});
+
+/* ---- neighbourhood sketch ---- */
+document.getElementById('mapArt').innerHTML = `
+<svg viewBox="0 0 400 300" aria-hidden="true">
+  <rect width="400" height="300" class="map-bg"/>
+  <path d="M40 300 L150 40 L250 40 L360 300" fill="none" stroke="currentColor" stroke-opacity=".16" stroke-width="34"/>
+  <path d="M40 300 L150 40 L250 40 L360 300" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="1" stroke-dasharray="8 10"/>
+  <text x="200" y="30" text-anchor="middle" font-family="Space Mono, monospace" font-size="10" letter-spacing="3" fill="currentColor" opacity=".5">WEMBLEY PARK STN</text>
+  <rect x="150" y="120" width="100" height="60" rx="4" class="art-bg" stroke="currentColor" stroke-opacity=".2"/>
+  <text x="200" y="148" text-anchor="middle" font-family="Big Shoulders Display, Anton, sans-serif" font-weight="900" font-size="18" fill="currentColor" opacity=".75">BOXPARK</text>
+  <text x="200" y="166" text-anchor="middle" font-family="Space Mono, monospace" font-size="9" letter-spacing="2" fill="currentColor" opacity=".45">UNIT 1F</text>
+  <g>
+    <circle cx="200" cy="150" r="30" fill="none" stroke="#E63122" stroke-width="1.5" opacity=".8"/>
+    <circle cx="200" cy="150" r="44" fill="none" stroke="#E63122" stroke-width="1" opacity=".35"/>
+  </g>
+  <path d="M155 285 q45 -14 90 0" fill="none" stroke="rgba(242,179,61,.5)" stroke-width="2"/>
+  <text x="200" y="278" text-anchor="middle" font-family="Space Mono, monospace" font-size="10" letter-spacing="3" fill="var(--gold)">STADIUM STEPS</text>
+  <text x="268" y="82" font-family="Space Mono, monospace" font-size="10" letter-spacing="2" fill="currentColor" opacity=".4">4 MIN WALK</text>
+</svg>`;
+
+
+/* ==================================================================
+   MOTION — progress, sticky header, pointer tilt, parallax, ticker
+   ================================================================== */
+const CALM = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* --- ticker: build once, duplicate for a seamless loop --- */
+const TICK_ITEMS = [
+  ['台式炸雞', 'han'], ['fried to order', ''], ['halal chicken', 'solid'],
+  ['pick your powder', ''], ['boxpark wembley', 'solid'], ['open 12–9 daily', ''],
+  ['溫布利', 'han'], ['no.1 taiwanese fried chicken', '']
+];
+const tickHTML = TICK_ITEMS.map(([txt, cls]) => `<b class="${cls}">${txt}</b><i>●</i>`).join('');
+document.getElementById('tickTrack').innerHTML = tickHTML + tickHTML;
+
+/* --- reading progress + header state + active section --- */
+const bar = document.querySelector('.bar'), prog = document.getElementById('progress');
+let ticking = false;
+function onScroll() {
+  const y = scrollY, max = document.body.scrollHeight - innerHeight;
+  if (prog) prog.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+  bar.classList.toggle('tight', y > 120);
+  if (!CALM) {
+    const l = document.querySelector('.lanterns');
+    if (l) l.style.transform = `translateY(${y * .18}px)`;
+  }
+  ticking = false;
+}
+addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+onScroll();
+
+/* nav link follows the section you're reading */
+const navMap = [...document.querySelectorAll('.navlinks a')];
+const secs = ['powder', 'menu', 'deals', 'visit'].map(id => document.getElementById(id)).filter(Boolean);
+if ('IntersectionObserver' in window) {
+  const navIO = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) navMap.forEach(a => a.classList.toggle('active', a.hash === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(s => navIO.observe(s));
+  /* category rules draw in */
+  const catIO = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('seen'); catIO.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -15% 0px' });
+  document.querySelectorAll('.cat,#deals').forEach(c => catIO.observe(c));
+}
+
+/* --- hero: heat follows the cursor, art drifts against it --- */
+const hero = document.querySelector('.hero'), heroArt = document.getElementById('heroArt');
+if (!CALM && hero && matchMedia('(hover:hover)').matches) {
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty('--mx', `${((e.clientX - r.left) / r.width * 100).toFixed(1)}%`);
+    hero.style.setProperty('--my', `${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`);
+    heroArt.style.translate = `${((e.clientX - r.left) / r.width - .5) * -16}px ${((e.clientY - r.top) / r.height - .5) * -12}px`;
+  });
+  hero.addEventListener('pointerleave', () => { heroArt.style.translate = '0 0'; });
+}
+
+/* --- dish tiles: tilt toward the pointer, glare tracks it --- */
+if (!CALM && matchMedia('(hover:hover)').matches) {
+  document.querySelectorAll('.card').forEach(card => {
+    const shot = card.querySelector('.shot');
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = `perspective(760px) rotateY(${(px * 7).toFixed(2)}deg) rotateX(${(-py * 6).toFixed(2)}deg) translateY(-6px) scale(1.015)`;
+      if (shot) {
+        shot.style.setProperty('--gx', `${((e.clientX - r.left) / r.width * 100).toFixed(1)}%`);
+        shot.style.setProperty('--gy', `${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`);
+      }
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+}
+
+/* ---- PREVIEW SWITCHER — delete to ship ---- */
+const THEMES = [
+  ['t-soy', '#14100E', '#1E1815', 'Soy black'],
+  ['t-jade', '#0B1F1C', '#1B4A40', 'Temple jade'],
+  ['t-oxblood', '#210A0A', '#4A1B16', 'Oxblood'],
+  ['t-slate', '#12161C', '#2B3441', 'Cold slate'],
+  ['t-paper', '#F2E7D1', '#F2E7D1', 'Greaseproof paper']
+];
+const tbar = document.getElementById('themebar');
+THEMES.forEach(([cls, hex, swatch, label], i) => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.style.background = swatch; b.title = label;
+  b.setAttribute('aria-label', label);
+  b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+  b.onclick = () => {
+    document.documentElement.className = cls;
+    document.querySelector('meta[name=theme-color]').setAttribute('content', hex);
+    [...tbar.querySelectorAll('button')].forEach(x => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', 'true');
+  };
+  tbar.appendChild(b);
+});
+
+/* ---- reveal on scroll ---- */
+if (!matchMedia('(prefers-reduced-motion:reduce)').matches && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver((es) => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.card,.ticket').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 4) * 60}ms`; io.observe(el);
+  });
+} else {
+  document.querySelectorAll('.card,.ticket').forEach(el => el.classList.add('in'));
+}
+</script>
+</body>
+</html>
