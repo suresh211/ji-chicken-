@@ -1,5 +1,5 @@
 /* Ji Chicken Wembley — offline shell cache */
-const CACHE = 'ji-wembley-v1';
+const CACHE = 'ji-wembley-v2';
 const ASSETS = ['./', './index.html', './manifest.json', './icon.svg'];
 
 self.addEventListener('install', e => {

@@ -180,6 +180,8 @@ h2.head{
 }
 .chip:hover{border-color:rgba(var(--fg-rgb),.4);color:var(--fg)}
 .chip .dot{width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.4) inset}
+.chip .chip-zh{font-size:12px;opacity:.5;font-weight:400}
+.chip[aria-pressed="true"] .chip-zh{color:var(--gold);opacity:.9}
 .chip[aria-pressed="true"]{background:rgba(var(--fg-rgb),.07);border-color:var(--tint);color:var(--fg)}
 .chip[aria-pressed="true"] .dot{box-shadow:0 0 0 3px rgba(var(--fg-rgb),.14)}
 .powder-note{font-family:var(--mono);font-size:12px;color:rgba(var(--fg-rgb),.5);margin:16px 0 0}
@@ -237,6 +239,7 @@ h2.head{
 .ticket-body{padding:15px 16px;display:flex;flex-direction:column;gap:6px}
 .ticket h4{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:19px;line-height:1;margin:0}
 .ticket .zh{font-family:var(--han);font-size:12px;color:var(--tkaccent);margin:0}
+.tk-no{margin:0;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--tkaccent);opacity:.85}
 .tk-note{margin:0;font-size:13.5px;opacity:.72}
 .ticket .foot{margin-top:auto;padding-top:10px;display:flex;align-items:center;gap:10px}
 .ticket .price{color:var(--tkfg)}
@@ -732,7 +735,7 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
     <div>
       <p class="eyebrow">The last step <span>/</span> 調味粉</p>
       <h2 class="head">Pick your<br>powder</h2>
-      <p class="lede">Everything comes out of the fryer plain. What makes it yours is the dust that goes on at the counter — pick one and the menu below gets seasoned with it.</p>
+      <p class="lede">Everything comes out of the fryer plain. What makes it yours is the dust that goes on at the counter — twelve to choose from, and the menu below gets seasoned with whichever you pick.</p>
     </div>
     <div>
       <div class="chips" id="chips" role="group" aria-label="Choose a seasoning powder"></div>
@@ -768,7 +771,7 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
 <section class="menu wrap" id="deals" style="padding-top:0">
   <div class="cat-head">
     <h3>Meal deals</h3><span class="zh">超值套餐</span>
-    <span class="n">Chicken + chips + drink</span>
+    <span class="n">Meals 1–8 · as priced at the counter</span>
   </div>
   <div class="tickets" id="dealRoot"></div>
 </section>
@@ -830,7 +833,7 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
       <a class="s" href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order</a>
       <p class="small">
         Five background options are built in — set <code>class="t-soy"</code>, <code>t-jade</code>, <code>t-oxblood</code>, <code>t-slate</code> or <code>t-paper</code> on the &lt;html&gt; tag, then delete the preview switcher block. Dish artwork on this page is drawn in code, so nothing ever loads broken. To use real photos, drop a JPG into <code>/images/</code> using the filename listed against each dish in the script and it will appear over the drawing automatically.<br>
-        Prices taken from Ji's Wembley delivery listing and may differ at the counter. Halal chicken; seafood and sides are fried in shared oil — ask us about allergens before ordering.
+        Prices shown are our Boxpark Wembley counter prices and may differ on delivery apps. Halal chicken; seafood and sides are fried in shared oil — ask us about allergens before ordering.
       </p>
     </div>
   </div>
@@ -1025,46 +1028,58 @@ const ART = {
 
 /* ---- seasoning powders ---- */
 const POWDERS = [
-  { id: 'sp', name: 'salt & pepper', hex: '#D8CDB6', desc: 'the house default — coarse white pepper and toasted salt.' },
-  { id: 'plum', name: 'plum', hex: '#B0567E', desc: 'sour-sweet preserved plum. The one to get on sweet potato.' },
-  { id: 'chilli', name: 'chilli', hex: '#E8533A', desc: 'dry chilli and five spice. Builds slowly, then stays.' },
-  { id: 'seaweed', name: 'seaweed', hex: '#5FA37E', desc: 'roasted nori ground fine — savoury, a little smoky.' },
-  { id: 'garlic', name: 'garlic', hex: '#EBCF7A', desc: 'toasted garlic powder. Best on gizzards and wings.' }
+  { id: 'sp', name: 'salt & pepper', zh: '椒鹽', hex: '#D8CDB6', desc: 'the house default — coarse white pepper and toasted salt.' },
+  { id: 'thai', name: 'thai', zh: '泰式', hex: '#E07A4A', desc: 'sweet, sour and hot at once, like a tom yum in powder form.' },
+  { id: 'garlic', name: 'garlic', zh: '大蒜', hex: '#EBCF7A', desc: 'toasted garlic powder. Best on gizzards and wings.' },
+  { id: 'plum', name: 'plum', zh: '甘梅', hex: '#B0567E', desc: 'sour-sweet preserved plum. The one to get on sweet potato.' },
+  { id: 'cheese', name: 'cheese', zh: '奶酪', hex: '#F0C64E', desc: 'savoury milk-powder cheese. Sticks to everything, in a good way.' },
+  { id: 'chilli', name: 'chilli', zh: '辣椒', hex: '#E8533A', desc: 'dry chilli and five spice. Builds slowly, then stays.' },
+  { id: 'seaweed', name: 'seaweed', zh: '紫菜', hex: '#5FA37E', desc: 'roasted nori ground fine — savoury, a little smoky.' },
+  { id: 'curry', name: 'curry', zh: '咖喱', hex: '#D9A227', desc: 'mild Japanese-style curry dust. Warm rather than hot.' },
+  { id: 'wasabi', name: 'wasabi', zh: '芥末', hex: '#9CC46B', desc: 'a sharp green hit that goes up the nose, then clears.' },
+  { id: 'numbing', name: 'numbing spice', zh: '麻辣', hex: '#C2413B', desc: 'Sichuan peppercorn and chilli — má là, the buzzy one.' },
+  { id: 'lemon', name: 'lemon', zh: '檸檬', hex: '#E8D95E', desc: 'bright and citrus-sour. Cuts straight through the fryer.' },
+  { id: 'special', name: 'ji special', zh: '特殊', hex: '#B8863C', desc: 'our own house blend. We are not telling you what is in it.' }
 ];
 
 /* ---- menu data: edit here. photo = /images/<file> when you have real shots ---- */
 const MENU = [
   {
-    cat: 'Classic Taiwanese fried chicken', zh: '经典台式炸鸡', note: 'Fried to order',
+    cat: 'Signature', zh: '招牌產品', note: 'The four we are known for',
     items: [
-      { n: 'Taiwanese Crispy Chicken Breast', zh: '臺灣經典雞排', p: '12.00', d: 'Taiwan\'s most-ordered street food. Whole breast, crumbly crust, juicy through the middle.', art: 'cutlet', tags: ['halal', 'pop'], flag: 'Best seller', slug: 'chicken-breast' },
-      { n: 'Taiwanese Chicken Popcorn', zh: '台灣經典鹹酥雞', p: '9.50', d: 'Marinated, cut small, fried till the edges go craggy. The bag empties fast.', art: 'popcorn', tags: ['pop'], slug: 'popcorn-chicken' },
-      { n: 'Volcanic Cheesy Chicken', zh: '爆漿起司雞排', p: '12.50', d: 'A breast folded around a block of cheese and fried until it oozes on the first tear.', art: 'cheesy', tags: ['halal'], flag: 'Cheese pull', slug: 'volcanic-cheesy-chicken' },
-      { n: 'Fried Boneless Chicken Thigh', zh: '無骨雞腿排', p: '10.00', d: 'Thigh pounded out to steak size — fattier than breast, so it stays juicier.', art: 'thigh', tags: ['halal'], slug: 'boneless-thigh' },
-      { n: 'Crunchy Chicken Strips', zh: '台式雞柳條', p: '9.50', d: 'Marinated strips fried to a hard crunch. Easiest thing to eat walking.', art: 'strips', tags: ['halal'], slug: 'chicken-strips' },
-      { n: 'Crispy Chicken Wings', zh: '脆炸鸡翅', p: '9.50', d: 'Seasoned and fried to gold, straight into the powder.', art: 'wings', tags: ['halal'], slug: 'chicken-wings' },
-      { n: 'Karaage Chicken', zh: '日式炸鸡', p: '9.50', d: 'Japanese-style chunks, lighter coating, sharper crunch.', art: 'karaage', tags: [], slug: 'karaage' },
-      { n: 'Crispy Chicken Skin', zh: '脆炸雞皮', p: '9.50', d: 'The best part of fried chicken, served on its own. Shatters.', art: 'skin', tags: ['pop'], slug: 'chicken-skin' },
-      { n: 'Garlic Chicken Gizzard', zh: '香蒜鷄胗', p: '9.50', d: 'Fried to a proper snap and finished with toasted garlic. A night-market regular.', art: 'gizzard', tags: ['pop'], slug: 'gizzard' },
-      { n: 'Crispy Chicken Thigh on Bone', zh: '金酥雞腿', p: '12.50', d: 'Two pieces, bone in, crust all the way round.', art: 'drumstick', tags: ['halal', 'out'], slug: 'thigh-on-bone' }
+      { n: 'Popcorn Chicken', zh: '脆皮雞米花', p: '7.50', d: 'Marinated, cut small, fried till the edges go craggy. The bag empties fast.', art: 'popcorn', tags: ['halal', 'pop'], flag: 'Best seller', slug: 'popcorn-chicken' },
+      { n: 'Crispy Chicken Breast', zh: '招牌台灣雞排', p: '9.00', d: 'Taiwan\'s most-ordered street food. Whole breast, crumbly crust, juicy through the middle.', art: 'cutlet', tags: ['halal', 'pop'], flag: 'Signature', slug: 'chicken-breast' },
+      { n: 'Volcani Cheesy Chicken', zh: '爆漿起司雞排', p: '10.00', d: 'A breast folded around a block of cheese and fried until it oozes on the first tear.', art: 'cheesy', tags: ['halal'], flag: 'Cheese pull', slug: 'volcanic-cheesy-chicken' },
+      { n: 'Crispy Chicken Wings', zh: '脆炸雞翅', p: '7.50', d: 'Seasoned and fried to gold, straight into the powder.', art: 'wings', tags: ['halal'], slug: 'chicken-wings' }
     ]
   },
   {
-    cat: 'Taiwanese fried seafood', zh: '台式炸海鮮', note: 'Light batter, hot oil',
+    cat: 'Chicken', zh: '雞肉', note: 'Fried to order',
     items: [
-      { n: 'Crispy Squid', zh: '脆炸魷魚', p: '11.50', d: 'Thin batter, quick fry — crunch outside, still tender in the ring.', art: 'squid', tags: [], slug: 'crispy-squid' },
-      { n: 'Crispy Octopus', zh: '脆炸八爪鱼', p: '10.50', d: 'Whole small legs, suckers and all. Chewy in the right way.', art: 'octopus', tags: [], slug: 'crispy-octopus' },
-      { n: 'Crispy King Prawn', zh: '脆炸大蝦', p: '10.50', d: 'King prawns in a light coat, sweet under the crust.', art: 'prawn', tags: [], slug: 'king-prawn' },
-      { n: 'Crunchy Crab Sticks', zh: '脆蟹肉棒', p: '7.95', d: 'Fried till the outside crisps and the inside goes soft and sweet.', art: 'crab', tags: [], slug: 'crab-sticks' }
+      { n: 'Garlic Chicken Gizzard', zh: '蒜香雞胗', p: '7.50', d: 'Fried to a proper snap and finished with toasted garlic. A night-market regular.', art: 'gizzard', tags: ['halal', 'pop'], slug: 'gizzard' },
+      { n: 'Crispy Chicken Skin', zh: '脆炸雞皮', p: '7.50', d: 'The best part of fried chicken, served on its own. Shatters.', art: 'skin', tags: ['halal', 'pop'], slug: 'chicken-skin' },
+      { n: 'Karaage Chicken', zh: '日式炸雞', p: '7.50', d: 'Japanese-style chunks, lighter coating, sharper crunch.', art: 'karaage', tags: ['halal'], slug: 'karaage' },
+      { n: 'Crunchy Thigh on Bone', zh: '金酥雞腿', p: '9.50', d: 'Bone in, crust all the way round, dark meat underneath.', art: 'drumstick', tags: ['halal'], slug: 'thigh-on-bone' },
+      { n: 'Crunchy Chicken Strips', zh: '雞柳條', p: '8.00', d: 'Marinated strips fried to a hard crunch. Easiest thing to eat walking.', art: 'strips', tags: ['halal'], slug: 'chicken-strips' },
+      { n: 'Boneless Chicken Thigh', zh: '無骨雞腿排', p: '7.50', d: 'Thigh pounded out to steak size — fattier than breast, so it stays juicier.', art: 'thigh', tags: ['halal'], slug: 'boneless-thigh' }
     ]
   },
   {
-    cat: 'Savoury sides', zh: '台式咸味配菜', note: 'Add a powder',
+    cat: 'Veggies', zh: '蔬食', note: 'Add a powder',
     items: [
-      { n: 'Taiwanese Style Chips', zh: '台式薯條', p: '4.95', d: 'Thick-cut and double-fried. Ask for salt and pepper on them.', art: 'chips', tags: [], slug: 'chips' },
-      { n: 'Fried Sweet Potatoes', zh: '酥炸地瓜', p: '7.95', d: 'Chunky, velvety inside. Plum powder turns these into pudding.', art: 'sweetpotato', tags: ['veg'], slug: 'sweet-potato' },
-      { n: 'Crispy Lotus Root Chips', zh: '脆炸藕片', p: '8.95', d: 'Sliced thin and fried to a crisp lace. For serious crunch people.', art: 'lotus', tags: ['pop'], slug: 'lotus-root' },
-      { n: 'Crispy Fried Tofu', zh: '酥炸豆腐', p: '8.50', d: 'Crust on the outside, silk in the middle.', art: 'tofu', tags: ['veg'], slug: 'fried-tofu' }
+      { n: 'Crispy Chips', zh: '薯條', p: '4.00', d: 'Thick-cut and double-fried. Ask for salt and pepper on them.', art: 'chips', tags: ['veg'], slug: 'chips' },
+      { n: 'Sweet Potato', zh: '炸地瓜', p: '7.00', d: 'Chunky, velvety inside. Plum powder turns these into pudding.', art: 'sweetpotato', tags: ['veg'], slug: 'sweet-potato' },
+      { n: 'Crispy Tofu', zh: '脆炸嫩豆腐', p: '7.00', d: 'Crust on the outside, silk in the middle.', art: 'tofu', tags: ['veg'], slug: 'fried-tofu' },
+      { n: 'Lotus Root Chips', zh: '脆炸藕片', p: '7.50', d: 'Sliced thin and fried to a crisp lace. For serious crunch people.', art: 'lotus', tags: ['veg', 'pop'], slug: 'lotus-root' }
+    ]
+  },
+  {
+    cat: 'Seafood', zh: '海鮮', note: 'Light batter, hot oil',
+    items: [
+      { n: 'Crispy King Prawn', zh: '脆炸大蝦', p: '7.50', d: 'King prawns in a light coat, sweet under the crust.', art: 'prawn', tags: [], slug: 'king-prawn' },
+      { n: 'Crispy Squid', zh: '脆炸魷魚', p: '9.00', d: 'Thin batter, quick fry — crunch outside, still tender in the ring.', art: 'squid', tags: [], slug: 'crispy-squid' },
+      { n: 'Crispy Octopus', zh: '脆炸八爪魚', p: '7.50', d: 'Whole small legs, suckers and all. Chewy in the right way.', art: 'octopus', tags: [], slug: 'crispy-octopus' },
+      { n: 'Crunchy Crab Sticks', zh: '香脆蟹柳棒', p: '6.50', d: 'Fried till the outside crisps and the inside goes soft and sweet.', art: 'crab', tags: [], slug: 'crab-sticks' }
     ]
   },
   {
@@ -1078,14 +1093,14 @@ const MENU = [
 ];
 
 const DEALS = [
-  { n: 'Chicken Breast + Popcorn Chicken', zh: '臺灣雞排 + 雞米花', p: '15.50', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-popcorn', d: 'Both bestsellers, one bag. Feeds two if you\'re being polite.' },
-  { n: 'Volcanic Cheesy + Chips + Drink', zh: '爆漿起司雞排+台式薯條+軟飲', p: '16.50', art: 'combo', tags: ['halal'], slug: 'deal-cheesy', d: 'The full set with the cheese-filled breast.' },
-  { n: 'Popcorn Chicken + Chips + Drink', zh: '台灣經典鹹酥雞+薯條+軟飲', p: '14.50', art: 'combo', tags: [], slug: 'deal-popcorn', d: 'The easy one. Everything shareable.' },
-  { n: 'Boneless Thigh + Chips + Drink', zh: '無骨雞腿排+台式薯條+軟飲', p: '14.50', art: 'combo', tags: ['halal'], slug: 'deal-thigh', d: 'Juiciest cut, full meal.' },
-  { n: 'Crispy Squid + Chips + Drink', zh: '脆炸魷魚+台式薯條+軟飲', p: '15.50', art: 'combo', tags: ['halal'], slug: 'deal-squid', d: 'For when you want seafood instead.' },
-  { n: 'King Prawns + Chips + Drink', zh: '脆皮大蝦+台式薯條+軟飲', p: '14.50', art: 'combo', tags: ['halal'], slug: 'deal-prawn', d: 'Sweet prawns, salty chips.' },
-  { n: 'Crispy Octopus + Chips + Drink', zh: '脆炸八爪魚+台式薯條+軟飲', p: '15.50', art: 'combo', tags: ['halal'], slug: 'deal-octopus', d: 'Chewy, crunchy, cold drink.' },
-  { n: 'Chicken Breast + Strips (3pc)', zh: '臺灣雞排 + 雞柳條', p: '15.50', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-strips', d: 'Breast plus three strips for the table.' }
+  { no: 'Meal 1', n: 'Chicken Breast & Popcorn Chicken', zh: '雞排 & 雞米花', p: '13.50', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-popcorn', d: 'Both bestsellers, one bag. Feeds two if you\'re being polite.' },
+  { no: 'Meal 2', n: 'Chicken Breast & Chicken Strips', zh: '雞排 & 雞柳', p: '14.00', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-strips', d: 'Whole breast plus a handful of strips for the table.' },
+  { no: 'Meal 3', n: 'Popcorn Chicken & Chips', zh: '雞米花 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-popcorn-chips', d: 'The easy one. Everything shareable.' },
+  { no: 'Meal 4', n: 'Chicken Skin & Chips', zh: '雞皮 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-skin-chips', d: 'Shattering skin, thick-cut chips. Season them differently.' },
+  { no: 'Meal 5', n: 'Volcani Cheesy Chicken & Chips', zh: '爆漿起司雞排 & 薯條', p: '12.50', art: 'combo', tags: ['halal'], slug: 'deal-cheesy-chips', d: 'The full set with the cheese-filled breast.' },
+  { no: 'Meal 6', n: 'Chicken Wings & Chips', zh: '雞翅 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-wings-chips', d: 'Wings straight from the fryer into the powder.' },
+  { no: 'Meal 7', n: 'Chicken Strips & Chips', zh: '雞柳 & 薯條', p: '10.50', art: 'combo', tags: ['halal'], slug: 'deal-strips-chips', d: 'The walk-and-eat order.' },
+  { no: 'Meal 8', n: 'Chips & Soft Drink', zh: '薯條 & 軟飲', p: '4.50', art: 'drink', tags: ['veg'], slug: 'deal-chips-drink', d: 'Chips, a cold can, done.' }
 ];
 
 /* ---- render ---- */
@@ -1141,6 +1156,7 @@ DEALS.forEach(d => {
   t.dataset.name = d.n; t.dataset.price = d.p; t.dataset.slug = d.slug;
   t.appendChild(shotEl(d));
   t.insertAdjacentHTML('beforeend', `<div class="ticket-body">
+    ${d.no ? `<p class="tk-no">${d.no}</p>` : ''}
     <h4>${d.n}</h4><p class="zh">${d.zh}</p>
     <p class="tk-note">${d.d}</p>
     <div class="foot"><span class="price">£${d.p}</span>${tagHTML(d.tags)}
@@ -1156,7 +1172,7 @@ POWDERS.forEach((p, i) => {
   const b = document.createElement('button');
   b.className = 'chip'; b.type = 'button';
   b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
-  b.innerHTML = `<span class="dot" style="background:${p.hex}"></span>${p.name}`;
+  b.innerHTML = `<span class="dot" style="background:${p.hex}"></span>${p.name}<span class="chip-zh han">${p.zh}</span>`;
   b.onclick = () => {
     document.documentElement.style.setProperty('--dust', p.hex);
     document.documentElement.style.setProperty('--tint', p.hex);
