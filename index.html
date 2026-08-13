@@ -171,19 +171,26 @@ h2.head{
 .powder{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink-2);padding:clamp(30px,5vw,52px) 0}
 .powder-in{display:grid;grid-template-columns:minmax(240px,.85fr) 1.15fr;gap:clamp(20px,4vw,50px);align-items:center}
 @media(max-width:860px){.powder-in{grid-template-columns:1fr}}
-.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
 .chip{
   cursor:pointer;background:transparent;color:rgba(var(--fg-rgb),.78);
-  border:1px solid var(--line);border-radius:999px;padding:11px 16px 11px 12px;
-  font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.03em;
-  display:flex;align-items:center;gap:9px;transition:border-color .15s,color .15s,background .15s;
+  border:1px solid var(--line);border-radius:12px;padding:12px 8px 11px;
+  font-family:var(--body);font-size:13.5px;font-weight:700;letter-spacing:.02em;line-height:1.2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;
+  transition:border-color .15s,color .15s,background .15s;
 }
 .chip:hover{border-color:rgba(var(--fg-rgb),.4);color:var(--fg)}
-.chip .dot{width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.4) inset}
-.chip .chip-zh{font-size:12px;opacity:.5;font-weight:400}
+.chip .dot{
+  width:52px;height:52px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(0,0,0,.25) inset;
+}
+.chip .dot svg{width:40px;height:40px}
+.chip .chip-zh{display:block;font-family:var(--han);font-size:11px;opacity:.5;font-weight:400;margin-top:2px}
 .chip[aria-pressed="true"] .chip-zh{color:var(--gold);opacity:.9}
 .chip[aria-pressed="true"]{background:rgba(var(--fg-rgb),.07);border-color:var(--tint);color:var(--fg)}
 .chip[aria-pressed="true"] .dot{box-shadow:0 0 0 3px rgba(var(--fg-rgb),.14)}
+@media(max-width:420px){.chips{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}.chip .dot{width:44px;height:44px}.chip .dot svg{width:34px;height:34px}}
 .powder-note{font-family:var(--mono);font-size:12px;color:rgba(var(--fg-rgb),.5);margin:16px 0 0}
 .powder-note b{color:var(--tint);font-weight:700}
 
@@ -207,7 +214,19 @@ h2.head{
 .card:hover{border-color:rgba(242,179,61,.45)}
 .shot{position:relative;aspect-ratio:4/3;margin:0;background:var(--ink-3);overflow:hidden}
 .shot svg{position:absolute;inset:0;width:100%;height:100%}
-.shot .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.shot .photo{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;
+  z-index:1;transition:transform .5s ease;
+  /* --z zooms past the tray, basket and bowl so only the food is in frame */
+  transform:scale(var(--z,1));transform-origin:var(--zo,50% 50%);
+}
+.card:hover .shot .photo,.ticket:hover .shot .photo{transform:scale(calc(var(--z,1) * 1.06))}
+/* cut-out PNGs: the whole product, floating over a fryer glow, nothing cropped off */
+.shot.cutout{background:radial-gradient(72% 62% at 50% 38%,rgba(242,179,61,.20),transparent 72%),var(--ink-3)}
+.shot.cutout svg{display:none}
+.shot.cutout .photo{object-fit:contain;padding:7% 8%;filter:drop-shadow(0 10px 12px rgba(0,0,0,.45))}
+.ticket .shot.cutout{background:radial-gradient(72% 58% at 50% 40%,rgba(242,179,61,.28),transparent 72%),var(--tkart)}
+.ticket .shot.cutout .photo{filter:drop-shadow(0 8px 10px rgba(0,0,0,.28))}
 .card:hover .shot svg{transform:scale(1.04)}
 .shot svg{transition:transform .4s ease}
 .card-body{padding:15px 16px 18px;display:flex;flex-direction:column;gap:7px;flex:1}
@@ -363,7 +382,7 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
 .card:hover .dust{animation:sprinkle .55s var(--d,0s) ease-out both}
 .dusting .dust{animation:sprinkle .8s var(--d,0s) cubic-bezier(.2,.9,.2,1) both}
 .chip .dot{transition:transform .3s cubic-bezier(.2,.9,.2,1),box-shadow .25s}
-.chip:hover .dot{transform:scale(1.25)}
+.chip:hover .dot{transform:scale(1.08)}
 .chip[aria-pressed="true"] .dot{animation:pulse 2.4s ease-in-out infinite}
 .chip{transition:border-color .2s,color .2s,background .2s,transform .2s cubic-bezier(.2,.8,.2,1)}
 .chip:hover{transform:translateY(-2px)}
@@ -832,7 +851,7 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
       <a class="s" href="https://www.facebook.com/jichickens/">Facebook</a>
       <a class="s" href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order</a>
       <p class="small">
-        Five background options are built in — set <code>class="t-soy"</code>, <code>t-jade</code>, <code>t-oxblood</code>, <code>t-slate</code> or <code>t-paper</code> on the &lt;html&gt; tag, then delete the preview switcher block. Dish artwork on this page is drawn in code, so nothing ever loads broken. To use real photos, drop a JPG into <code>/images/</code> using the filename listed against each dish in the script and it will appear over the drawing automatically.<br>
+        Five background options are built in — set <code>class="t-soy"</code>, <code>t-jade</code>, <code>t-oxblood</code>, <code>t-slate</code> or <code>t-paper</code> on the &lt;html&gt; tag, then delete the preview switcher block. Dish artwork on this page is drawn in code, so nothing ever loads broken. Real shop photos sit over the drawing where we have them — add more by dropping a JPG into <code>/images/</code> named after the dish's <code>slug</code>, or by setting <code>photo</code> on the dish in the script.<br>
         Prices shown are our Boxpark Wembley counter prices and may differ on delivery apps. Halal chicken; seafood and sides are fried in shared oil — ask us about allergens before ordering.
       </p>
     </div>
@@ -1042,24 +1061,81 @@ const POWDERS = [
   { id: 'special', name: 'ji special', zh: '特殊', hex: '#B8863C', desc: 'our own house blend. We are not telling you what is in it.' }
 ];
 
+/* ---- seasoning artwork: drawn in code, same as the dishes ----
+   (photos off Google can't be licensed for the site, so these are ours) */
+const grains = (n, cx, cy, spread, fill, seed, rmin = .5, rmax = 1.3) => {
+  const r = rnd(seed); let s = '';
+  for (let i = 0; i < n; i++) {
+    const a = r() * 6.283, d = Math.sqrt(r()) * spread;
+    s += `<circle cx="${(cx + Math.cos(a) * d).toFixed(1)}" cy="${(cy + Math.sin(a) * d * .5).toFixed(1)}" r="${(rmin + r() * (rmax - rmin)).toFixed(1)}" fill="${fill}"/>`;
+  }
+  return s;
+};
+const heap = fill => `<ellipse cx="20" cy="30" rx="13" ry="3" fill="#000" opacity=".14"/>
+  <path d="M7 30 q5 -14 13 -14 q9 0 14 14z" fill="${fill}"/>`;
+const svg = inner => `<svg viewBox="0 0 40 40" aria-hidden="true">${inner}</svg>`;
+
+const SEASON_ART = {
+  sp: svg(`${heap('#F2ECDF')}<path d="M13 30 q4 -8 7 -8 q4 0 7 8z" fill="#FFFCF4" opacity=".8"/>
+    ${grains(16, 20, 26, 7, '#3A332B', 5, .5, 1.2)}`),
+  thai: svg(`<path d="M7 17 h26 a13 13 0 0 1 -26 0z" fill="#E8734A"/>
+    <ellipse cx="20" cy="17" rx="13" ry="3.4" fill="#F4A77C"/>
+    <circle cx="15" cy="17" r="2.2" fill="#E03A28"/><circle cx="25" cy="18" r="1.7" fill="#E03A28"/>
+    <path d="M18 15 q4 -1.5 7 1.5" stroke="#4E7A3A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <path d="M20 11 q4 -5 0 -8" stroke="#F7EFE0" stroke-opacity=".5" stroke-width="1.6" fill="none" stroke-linecap="round"/>`),
+  garlic: svg(`<path d="M20 8 q1.5 2.5 0 4" stroke="#B9A981" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M20 11 q10 2.5 10 11.5 q0 8.5 -10 8.5 q-10 0 -10 -8.5 q0 -9 10 -11.5z" fill="#F7F1E5" stroke="#D5C8AE" stroke-width="1.1"/>
+    <path d="M20 12 q-4.5 6 -4.5 19 M20 12 q4.5 6 4.5 19" stroke="#DED3BD" stroke-width="1.2" fill="none"/>`),
+  plum: svg(`<circle cx="20" cy="22" r="11" fill="#7E2B4E"/>
+    <path d="M20 11.5 v21" stroke="#5C1B38" stroke-width="1.3"/>
+    <ellipse cx="16" cy="18" rx="3.2" ry="2.1" fill="#fff" opacity=".22"/>
+    <path d="M20 12 q5.5 -6.5 10.5 -5 q-2 6.5 -9.5 6z" fill="#4E7A3A"/>`),
+  cheese: svg(`<path d="M7 27 L27 12 L33 27 Z" fill="#F5CE5C" stroke="#C99A22" stroke-width="1.3" stroke-linejoin="round"/>
+    <path d="M7 27 L27 12 L28.5 16 L10 28 Z" fill="#FFE28C" opacity=".7"/>
+    <circle cx="16" cy="23" r="2.2" fill="#D9A42B"/><circle cx="24" cy="21.5" r="1.6" fill="#D9A42B"/><circle cx="21" cy="25.5" r="1.2" fill="#D9A42B"/>`),
+  chilli: svg(`<path d="M12.5 12 q1.5 -4.5 6 -4" stroke="#4E7A3A" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M14 12 q12 3 13 13 q1 9 -7 9 q-7 0 -6 -8 q1 -8 -6 -10z" fill="#E03A28" stroke="#A82217" stroke-width="1"/>
+    <path d="M18 16 q6 4 6 12" stroke="#fff" stroke-opacity=".28" stroke-width="1.8" fill="none" stroke-linecap="round"/>`),
+  seaweed: svg(`<g transform="rotate(-11 20 21)"><rect x="7" y="9" width="20" height="21" rx="2" fill="#24473C"/></g>
+    <g transform="rotate(13 22 22)"><rect x="14" y="12" width="18" height="19" rx="2" fill="#2F5A4A"/></g>
+    ${grains(12, 20, 21, 8, '#7FB08F', 9, .4, 1.1)}`),
+  curry: svg(`${heap('#D9A227')}<path d="M13 30 q4 -8 7 -8 q4 0 7 8z" fill="#EFC04A" opacity=".75"/>
+    ${grains(12, 20, 26, 7, '#B0791A', 11, .5, 1.2)}`),
+  wasabi: svg(`${heap('#8FBE5E')}<path d="M13 30 q4 -8 7 -8 q4 0 7 8z" fill="#A9D077" opacity=".8"/>
+    ${grains(14, 20, 26, 7, '#65913E', 13, .4, 1.1)}`),
+  numbing: svg([[14, 20], [24, 16.5], [20, 25], [27.5, 25.5], [13, 28]].map(([x, y]) =>
+    `<path d="M${x} ${y - 4.4} v-2.6" stroke="#7A2A20" stroke-width="1.2" stroke-linecap="round"/>
+     <circle cx="${x}" cy="${y}" r="4.6" fill="#B03A2E"/>
+     <circle cx="${x - 1.4}" cy="${y - 1.5}" r="1.6" fill="#E07A6A" opacity=".65"/>`).join('')),
+  lemon: svg(`<circle cx="20" cy="21" r="12" fill="#EEDA5A"/>
+    <circle cx="20" cy="21" r="9.4" fill="#FBF0A6"/>
+    ${Array.from({ length: 8 }, (_, k) => {
+      const a = k / 8 * 6.283;
+      return `<path d="M20 21 L${(20 + Math.cos(a) * 9).toFixed(1)} ${(21 + Math.sin(a) * 9).toFixed(1)}" stroke="#E3CE4B" stroke-width="1.3" stroke-linecap="round"/>`;
+    }).join('')}
+    <circle cx="20" cy="21" r="1.6" fill="#E3CE4B"/>`),
+  special: svg(`<circle cx="20" cy="20" r="13" fill="#F7EFE0"/>
+    <text x="20" y="27.5" text-anchor="middle" font-family="Big Shoulders Display, Anton, sans-serif" font-weight="900" font-size="21" fill="#A8752F">Ji</text>`)
+};
+
 /* ---- menu data: edit here. photo = /images/<file> when you have real shots ---- */
 const MENU = [
   {
     cat: 'Signature', zh: '招牌產品', note: 'The four we are known for',
     items: [
-      { n: 'Popcorn Chicken', zh: '脆皮雞米花', p: '7.50', d: 'Marinated, cut small, fried till the edges go craggy. The bag empties fast.', art: 'popcorn', tags: ['halal', 'pop'], flag: 'Best seller', slug: 'popcorn-chicken' },
+      { n: 'Popcorn Chicken', zh: '脆皮雞米花', p: '7.50', d: 'Marinated, cut small, fried till the edges go craggy. The bag empties fast.', art: 'popcorn', tags: ['halal', 'pop'], flag: 'Best seller', slug: 'popcorn-chicken', photo: 'Popcorn.png' },
       { n: 'Crispy Chicken Breast', zh: '招牌台灣雞排', p: '9.00', d: 'Taiwan\'s most-ordered street food. Whole breast, crumbly crust, juicy through the middle.', art: 'cutlet', tags: ['halal', 'pop'], flag: 'Signature', slug: 'chicken-breast' },
-      { n: 'Volcani Cheesy Chicken', zh: '爆漿起司雞排', p: '10.00', d: 'A breast folded around a block of cheese and fried until it oozes on the first tear.', art: 'cheesy', tags: ['halal'], flag: 'Cheese pull', slug: 'volcanic-cheesy-chicken' },
-      { n: 'Crispy Chicken Wings', zh: '脆炸雞翅', p: '7.50', d: 'Seasoned and fried to gold, straight into the powder.', art: 'wings', tags: ['halal'], slug: 'chicken-wings' }
+      { n: 'Volcani Cheesy Chicken', zh: '爆漿起司雞排', p: '10.00', d: 'A breast folded around a block of cheese and fried until it oozes on the first tear.', art: 'cheesy', tags: ['halal'], flag: 'Cheese pull', slug: 'volcanic-cheesy-chicken', photo: 'Volanic chessy chicken.png' },
+      { n: 'Crispy Chicken Wings', zh: '脆炸雞翅', p: '7.50', d: 'Seasoned and fried to gold, straight into the powder.', art: 'wings', tags: ['halal'], slug: 'chicken-wings', photo: 'wings.png' }
     ]
   },
   {
     cat: 'Chicken', zh: '雞肉', note: 'Fried to order',
     items: [
-      { n: 'Garlic Chicken Gizzard', zh: '蒜香雞胗', p: '7.50', d: 'Fried to a proper snap and finished with toasted garlic. A night-market regular.', art: 'gizzard', tags: ['halal', 'pop'], slug: 'gizzard' },
-      { n: 'Crispy Chicken Skin', zh: '脆炸雞皮', p: '7.50', d: 'The best part of fried chicken, served on its own. Shatters.', art: 'skin', tags: ['halal', 'pop'], slug: 'chicken-skin' },
-      { n: 'Karaage Chicken', zh: '日式炸雞', p: '7.50', d: 'Japanese-style chunks, lighter coating, sharper crunch.', art: 'karaage', tags: ['halal'], slug: 'karaage' },
-      { n: 'Crunchy Thigh on Bone', zh: '金酥雞腿', p: '9.50', d: 'Bone in, crust all the way round, dark meat underneath.', art: 'drumstick', tags: ['halal'], slug: 'thigh-on-bone' },
+      { n: 'Garlic Chicken Gizzard', zh: '蒜香雞胗', p: '7.50', d: 'Fried to a proper snap and finished with toasted garlic. A night-market regular.', art: 'gizzard', tags: ['halal', 'pop'], slug: 'gizzard', photo: 'Gizzard.png' },
+      { n: 'Crispy Chicken Skin', zh: '脆炸雞皮', p: '7.50', d: 'The best part of fried chicken, served on its own. Shatters.', art: 'skin', tags: ['halal', 'pop'], slug: 'chicken-skin', photo: 'skin.png' },
+      { n: 'Karaage Chicken', zh: '日式炸雞', p: '7.50', d: 'Japanese-style chunks, lighter coating, sharper crunch.', art: 'karaage', tags: ['halal'], slug: 'karaage', photo: 'kaarage chicken.png' },
+      { n: 'Crunchy Thigh on Bone', zh: '金酥雞腿', p: '9.50', d: 'Bone in, crust all the way round, dark meat underneath.', art: 'drumstick', tags: ['halal'], slug: 'thigh-on-bone', photo: 'Thigh on bone.png' },
       { n: 'Crunchy Chicken Strips', zh: '雞柳條', p: '8.00', d: 'Marinated strips fried to a hard crunch. Easiest thing to eat walking.', art: 'strips', tags: ['halal'], slug: 'chicken-strips' },
       { n: 'Boneless Chicken Thigh', zh: '無骨雞腿排', p: '7.50', d: 'Thigh pounded out to steak size — fattier than breast, so it stays juicier.', art: 'thigh', tags: ['halal'], slug: 'boneless-thigh' }
     ]
@@ -1068,7 +1144,7 @@ const MENU = [
     cat: 'Veggies', zh: '蔬食', note: 'Add a powder',
     items: [
       { n: 'Crispy Chips', zh: '薯條', p: '4.00', d: 'Thick-cut and double-fried. Ask for salt and pepper on them.', art: 'chips', tags: ['veg'], slug: 'chips' },
-      { n: 'Sweet Potato', zh: '炸地瓜', p: '7.00', d: 'Chunky, velvety inside. Plum powder turns these into pudding.', art: 'sweetpotato', tags: ['veg'], slug: 'sweet-potato' },
+      { n: 'Sweet Potato', zh: '炸地瓜', p: '7.00', d: 'Chunky, velvety inside. Plum powder turns these into pudding.', art: 'sweetpotato', tags: ['veg'], slug: 'sweet-potato', photo: 'Sweet potato.png' },
       { n: 'Crispy Tofu', zh: '脆炸嫩豆腐', p: '7.00', d: 'Crust on the outside, silk in the middle.', art: 'tofu', tags: ['veg'], slug: 'fried-tofu' },
       { n: 'Lotus Root Chips', zh: '脆炸藕片', p: '7.50', d: 'Sliced thin and fried to a crisp lace. For serious crunch people.', art: 'lotus', tags: ['veg', 'pop'], slug: 'lotus-root' }
     ]
@@ -1095,10 +1171,10 @@ const MENU = [
 const DEALS = [
   { no: 'Meal 1', n: 'Chicken Breast & Popcorn Chicken', zh: '雞排 & 雞米花', p: '13.50', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-popcorn', d: 'Both bestsellers, one bag. Feeds two if you\'re being polite.' },
   { no: 'Meal 2', n: 'Chicken Breast & Chicken Strips', zh: '雞排 & 雞柳', p: '14.00', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-strips', d: 'Whole breast plus a handful of strips for the table.' },
-  { no: 'Meal 3', n: 'Popcorn Chicken & Chips', zh: '雞米花 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-popcorn-chips', d: 'The easy one. Everything shareable.' },
-  { no: 'Meal 4', n: 'Chicken Skin & Chips', zh: '雞皮 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-skin-chips', d: 'Shattering skin, thick-cut chips. Season them differently.' },
-  { no: 'Meal 5', n: 'Volcani Cheesy Chicken & Chips', zh: '爆漿起司雞排 & 薯條', p: '12.50', art: 'combo', tags: ['halal'], slug: 'deal-cheesy-chips', d: 'The full set with the cheese-filled breast.' },
-  { no: 'Meal 6', n: 'Chicken Wings & Chips', zh: '雞翅 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-wings-chips', d: 'Wings straight from the fryer into the powder.' },
+  { no: 'Meal 3', n: 'Popcorn Chicken & Chips', zh: '雞米花 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-popcorn-chips', d: 'The easy one. Everything shareable.', photo: 'Popcorn.png' },
+  { no: 'Meal 4', n: 'Chicken Skin & Chips', zh: '雞皮 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-skin-chips', d: 'Shattering skin, thick-cut chips. Season them differently.', photo: 'skin.png' },
+  { no: 'Meal 5', n: 'Volcani Cheesy Chicken & Chips', zh: '爆漿起司雞排 & 薯條', p: '12.50', art: 'combo', tags: ['halal'], slug: 'deal-cheesy-chips', d: 'The full set with the cheese-filled breast.', photo: 'Volanic chessy chicken.png' },
+  { no: 'Meal 6', n: 'Chicken Wings & Chips', zh: '雞翅 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-wings-chips', d: 'Wings straight from the fryer into the powder.', photo: 'wings.png' },
   { no: 'Meal 7', n: 'Chicken Strips & Chips', zh: '雞柳 & 薯條', p: '10.50', art: 'combo', tags: ['halal'], slug: 'deal-strips-chips', d: 'The walk-and-eat order.' },
   { no: 'Meal 8', n: 'Chips & Soft Drink', zh: '薯條 & 軟飲', p: '4.50', art: 'drink', tags: ['veg'], slug: 'deal-chips-drink', d: 'Chips, a cold can, done.' }
 ];
@@ -1113,7 +1189,17 @@ function shotEl(item) {
   fig.querySelector('svg').setAttribute('aria-label', item.n);
   const img = document.createElement('img');
   img.className = 'photo'; img.alt = item.n; img.loading = 'lazy';
-  img.src = `images/${item.slug}.jpg`;
+  /* a cut-out PNG has no background of its own — show it whole, floating on the tile */
+  const cut = /\.png$/i.test(item.photo || '');
+  if (cut) fig.classList.add('cutout');
+  /* item.photo = a real shot in the site folder; otherwise look for images/<slug>.jpg */
+  img.src = encodeURI(item.photo || `images/${item.slug}.jpg`);
+  /* item.pos + item.zoom crop the shot down to the food itself — the tile is 4:3,
+     the photos are tall, and everything outside the crop (basket, tray, bowl) is cut */
+  if (!cut) {
+    if (item.pos) { img.style.objectPosition = item.pos; img.style.setProperty('--zo', item.pos); }
+    if (item.zoom) img.style.setProperty('--z', item.zoom);
+  }
   img.onerror = () => img.remove();          // no photo yet → the drawing stays
   fig.appendChild(img);
   return fig;
@@ -1172,7 +1258,8 @@ POWDERS.forEach((p, i) => {
   const b = document.createElement('button');
   b.className = 'chip'; b.type = 'button';
   b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
-  b.innerHTML = `<span class="dot" style="background:${p.hex}"></span>${p.name}<span class="chip-zh han">${p.zh}</span>`;
+  b.innerHTML = `<span class="dot" style="background:${p.hex}33">${SEASON_ART[p.id] || ''}</span>
+    <span>${p.name}<span class="chip-zh han">${p.zh}</span></span>`;
   b.onclick = () => {
     document.documentElement.style.setProperty('--dust', p.hex);
     document.documentElement.style.setProperty('--tint', p.hex);
