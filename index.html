@@ -166,6 +166,16 @@ h2.head{
 .badge.star{border-color:rgba(242,179,61,.6);color:var(--gold)}
 .hero-art{position:relative;aspect-ratio:1/1;max-height:520px;margin-inline:auto;width:100%}
 .hero-art svg{width:100%;height:100%}
+/* the Ji logo, centred in the hero under the fry light */
+.hero-logo{
+  position:absolute;left:50%;top:50%;translate:-50% -50%;
+  width:68%;aspect-ratio:1;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  filter:drop-shadow(0 18px 34px rgba(0,0,0,.5));
+  animation:logoIn .8s cubic-bezier(.2,.8,.2,1) both .35s;
+}
+.hero-logo img,.hero-logo svg{width:100%;height:100%;object-fit:contain}
+@keyframes logoIn{from{opacity:0;transform:scale(.82) rotate(-5deg)}to{opacity:1;transform:none}}
 
 /* ================= powder picker (signature) ================= */
 .powder{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink-2);padding:clamp(30px,5vw,52px) 0}
@@ -459,7 +469,7 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
   .hero-grid > div > :nth-child(4){animation-delay:.32s}
   .hero-grid > div > :nth-child(5){animation-delay:.41s}
   .hero-art{animation:artIn 1s cubic-bezier(.2,.8,.2,1) both .2s}
-  .hero-art svg{animation:floaty 7s ease-in-out infinite 1.2s}
+  .hero-logo > *{animation:floaty 7s ease-in-out infinite 1.2s}
   .sizzle circle{animation:bubble 3.4s ease-out infinite}
 }
 @media (prefers-reduced-motion:reduce){.progress{display:none}}
@@ -1313,30 +1323,41 @@ POWDERS.forEach((p, i) => {
   chips.appendChild(b);
 });
 
-/* ---- hero art: lanterns + one big cutlet under a fry light ---- */
+/* ---- hero art: the Ji logo under a fry light.
+   Drop logo.png in this folder and it replaces the drawn mark automatically. ---- */
 document.getElementById('heroArt').innerHTML = `
 <svg viewBox="0 0 460 460" aria-hidden="true">
-  <circle cx="230" cy="240" r="196" fill="url(#fryLight)"/>
+  <circle cx="230" cy="230" r="215" fill="url(#fryLight)"/>
+  <circle cx="230" cy="230" r="196" fill="none" stroke="rgba(230,49,34,.35)" stroke-width="1"/>
+  <circle cx="230" cy="230" r="168" fill="none" stroke="currentColor" stroke-opacity=".12" stroke-width="1"/>
   <g class="sizzle" fill="var(--gold)">
-    <circle cx="150" cy="330" r="4" opacity=".0"/><circle cx="196" cy="352" r="2.6" opacity="0" style="animation-delay:.9s"/>
-    <circle cx="268" cy="344" r="3.4" opacity="0" style="animation-delay:1.7s"/><circle cx="312" cy="326" r="2.2" opacity="0" style="animation-delay:2.5s"/>
-    <circle cx="234" cy="360" r="3" opacity="0" style="animation-delay:3.1s"/>
+    <circle cx="112" cy="330" r="4" opacity="0"/><circle cx="168" cy="372" r="2.6" opacity="0" style="animation-delay:.9s"/>
+    <circle cx="300" cy="364" r="3.4" opacity="0" style="animation-delay:1.7s"/><circle cx="348" cy="322" r="2.2" opacity="0" style="animation-delay:2.5s"/>
+    <circle cx="230" cy="392" r="3" opacity="0" style="animation-delay:3.1s"/>
   </g>
-  <circle cx="230" cy="240" r="168" fill="none" stroke="currentColor" stroke-opacity=".12" stroke-width="1"/>
-  <circle cx="230" cy="240" r="196" fill="none" stroke="rgba(230,49,34,.35)" stroke-width="1"/>
-  <g class="steam"><path d="M172 118 q14 -26 0 -50" stroke="currentColor" stroke-opacity=".4" stroke-width="5" fill="none" stroke-linecap="round"/></g>
-  <g class="steam" style="animation-delay:1.4s"><path d="M230 104 q16 -30 0 -56" stroke="currentColor" stroke-opacity=".38" stroke-width="5" fill="none" stroke-linecap="round"/></g>
-  <g class="steam" style="animation-delay:2.6s"><path d="M290 120 q14 -26 0 -48" stroke="currentColor" stroke-opacity=".32" stroke-width="5" fill="none" stroke-linecap="round"/></g>
-  <ellipse cx="230" cy="398" rx="152" ry="20" fill="#000" opacity=".5"/>
-  <path d="M112 274 L348 274 L340 292 L120 292 Z" fill="#B9A784"/>
-  ${piece(230, 210, 126, 92, 999, 'url(#crustG)', 40)}
-  <path d="M124 176 Q230 152 336 182" stroke="#7E3F0E" stroke-width="4" fill="none" opacity=".35"/>
-  <path d="M138 244 Q230 274 320 240" stroke="#7E3F0E" stroke-width="3" fill="none" opacity=".28"/>
-  <path d="M100 282 L360 282 L332 396 L128 396 Z" fill="url(#paperG)" stroke="#B9A784" stroke-width="2"/>
-  <path d="M100 282 L360 282 L357 306 L103 306 Z" fill="#E63122" opacity=".8"/>
-  <path d="M128 396 L332 396" stroke="#C3AE88" stroke-width="3"/>
-  <text x="230" y="352" text-anchor="middle" font-family="Big Shoulders Display, Anton, sans-serif" font-weight="900" font-size="42" letter-spacing="4" fill="#22160F" opacity=".22">JI 台式</text>
 </svg>`;
+
+(function heroLogo(){
+  const host = document.createElement('div');
+  host.className = 'hero-logo';
+  host.innerHTML = `
+    <svg viewBox="0 0 200 200" role="img" aria-label="Ji — The Chicken Shop">
+      <circle cx="100" cy="100" r="96" fill="#F2B33D"/>
+      <circle cx="100" cy="100" r="96" fill="none" stroke="#22160F" stroke-width="7"/>
+      <circle cx="100" cy="100" r="82" fill="none" stroke="#22160F" stroke-width="2" opacity=".35"/>
+      <text x="100" y="58" text-anchor="middle" font-family="Space Mono, monospace" font-weight="700"
+            font-size="15" letter-spacing="1.5" fill="#22160F" opacity=".8">THE CHICKEN SHOP</text>
+      <text x="100" y="142" text-anchor="middle" font-family="Big Shoulders Display, Anton, sans-serif"
+            font-weight="900" font-size="96" fill="#22160F">Ji</text>
+      <text x="100" y="170" text-anchor="middle" font-family="Noto Serif TC, serif" font-weight="700"
+            font-size="17" letter-spacing="3" fill="#22160F" opacity=".75">台式炸雞</text>
+    </svg>`;
+  const img = new Image();
+  img.alt = 'Ji — The Chicken Shop';
+  img.onload = () => { host.innerHTML = ''; host.appendChild(img); };
+  img.src = 'logo.png';
+  document.getElementById('heroArt').appendChild(host);
+})();
 
 const row = document.getElementById('lanternRow');
 [130, 300, 470, 640, 810, 980, 1120].forEach((x, i) => {
