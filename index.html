@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Ji Chicken Wembley — Taiwanese Fried Chicken at Boxpark</title>
-<meta name="description" content="Halal Taiwanese fried chicken, fried to order and dusted with the seasoning powder you pick. Boxpark Wembley, 1F Olympic Way, HA9 0NP. Open daily 12pm–9pm.">
+<title>Ji Chicken Wembley — Taiwanese Fried Chicken on Olympic Way</title>
+<meta name="description" content="Halal Taiwanese fried chicken, fried to order and dusted with the seasoning powder you pick. 1F, 1 Olympic Way, Wembley Park, London HA9 0NP — opposite Wembley Park station. Open daily 11am–10pm.">
 <meta name="theme-color" content="#14100E">
-<meta name="keywords" content="Taiwanese fried chicken, halal, Boxpark Wembley, popcorn chicken, chicken breast, Olympic Way, HA9 0NP, karaage, fried squid">
+<meta name="keywords" content="Taiwanese fried chicken, halal, Wembley Park, 1 Olympic Way, popcorn chicken, chicken breast, Olympic Way, HA9 0NP, karaage, fried squid">
 <link rel="canonical" href="https://jichickens.co.uk/wembley">
 <!-- Open Graph -->
 <meta property="og:type" content="restaurant.restaurant">
 <meta property="og:site_name" content="Ji Chicken Wembley">
-<meta property="og:title" content="Ji Chicken Wembley — Taiwanese Fried Chicken at Boxpark">
-<meta property="og:description" content="Halal Taiwanese fried chicken, fried to order and dusted with the powder you pick. Boxpark Wembley, open daily 12–9pm.">
+<meta property="og:title" content="Ji Chicken Wembley — Taiwanese Fried Chicken on Olympic Way">
+<meta property="og:description" content="Halal Taiwanese fried chicken, fried to order and dusted with the powder you pick. 1 Olympic Way, opposite Wembley Park station. Open daily 11am–10pm.">
 <meta property="og:locale" content="en_GB">
 <meta property="og:url" content="https://jichickens.co.uk/wembley">
 <meta property="og:image" content="https://jichickens.co.uk/wembley/og.jpg">
 <meta property="og:image:alt" content="A whole Taiwanese fried chicken breast in a greaseproof tray, dusted with seasoning">
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ji Chicken Wembley — Taiwanese Fried Chicken at Boxpark">
-<meta name="twitter:description" content="Halal Taiwanese fried chicken, fried to order. Boxpark Wembley, open daily 12–9pm.">
+<meta name="twitter:title" content="Ji Chicken Wembley — Taiwanese Fried Chicken on Olympic Way">
+<meta name="twitter:description" content="Halal Taiwanese fried chicken, fried to order. 1 Olympic Way, Wembley Park. Open daily 11am–10pm.">
 <meta name="twitter:image" content="https://jichickens.co.uk/wembley/og.jpg">
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
@@ -630,6 +630,31 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
 .pdust{font-family:var(--mono);font-size:11px;color:rgba(var(--fg-rgb),.5);margin:0 0 12px;text-transform:uppercase;letter-spacing:.08em}
 .pdust b{color:var(--tint)}
 
+/* ---- order chooser ---- */
+.osheet-scrim{position:fixed;inset:0;z-index:74;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);animation:fadeIn .25s ease}
+.osheet{
+  position:fixed;z-index:75;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(400px,calc(100% - 32px));background:var(--ink-2);color:var(--fg);
+  border:1px solid var(--line);border-radius:14px;padding:26px 24px 24px;
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.9);animation:sheetIn .3s cubic-bezier(.2,.8,.2,1);
+}
+.osheet h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin:0 0 8px}
+.osheet .osub{margin:0 0 18px;font-size:14px;color:rgba(var(--fg-rgb),.6)}
+.osheet .ox{position:absolute;top:12px;right:12px;background:none;border:0;color:rgba(var(--fg-rgb),.6);cursor:pointer;font-size:26px;line-height:1;width:36px;height:36px;border-radius:8px}
+.osheet .ox:hover{background:rgba(var(--fg-rgb),.1);color:var(--fg)}
+.olinks{display:flex;flex-direction:column;gap:10px}
+.olink{
+  display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--fg);
+  border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+  font-weight:700;font-size:15px;transition:border-color .18s,background .18s,transform .18s;
+}
+.olink:hover{border-color:var(--gold);background:rgba(var(--fg-rgb),.05);transform:translateY(-1px)}
+.olink .oico{width:34px;height:34px;border-radius:8px;flex:none;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:900;font-size:17px;color:#fff}
+.olink small{display:block;font-weight:400;font-size:12px;color:rgba(var(--fg-rgb),.55);letter-spacing:.02em}
+.olink .arr{margin-left:auto;opacity:.45}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes sheetIn{from{opacity:0;transform:translate(-50%,-46%) scale(.96)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+
 /* ---- toast ---- */
 .toasts{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:80;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
 .toast{
@@ -707,7 +732,7 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
       <a href="#visit">Find us</a>
     </nav>
     <span class="status-pill" id="statusPill" title="Kitchen hours"><span class="led"></span><span id="statusTxt">Checking…</span></span>
-    <a class="btn" href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order now</a>
+    <a class="btn" data-order href="https://deliveroo.co.uk/menu/london/boxpark-wembley/ji-the-chicken-shop-wembley">Order now</a>
   </div>
   <nav class="mininav" aria-label="Sections">
     <a href="#powder">Powders</a><a href="#menu">Chicken</a><a href="#menu">Seafood</a>
@@ -724,20 +749,20 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
   </svg>
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow">Boxpark Wembley <span>/</span> Halal <span>/</span> Fried to order</p>
+      <p class="eyebrow">Wembley Park <span>/</span> Halal <span>/</span> Fried to order</p>
       <h1 class="marquee">The night market<em>is one street</em>from the stadium
         <small class="han">台式炸雞 · 溫布利</small>
       </h1>
       <p>Taiwanese fried chicken cut thick, dropped fresh, and dusted with the seasoning powder you pick at the counter. Three years of recipe work, one small kitchen on Olympic Way.</p>
       <div class="hero-cta">
-        <a class="btn" href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order for collection</a>
+        <a class="btn" data-order href="https://deliveroo.co.uk/menu/london/boxpark-wembley/ji-the-chicken-shop-wembley">Order for delivery</a>
         <a class="btn btn-ghost" href="#menu">See the menu</a>
       </div>
       <div class="badges">
-        <span class="badge star">★ 4.7 · 284 reviews</span>
+        <span class="badge star">Hygiene rating 4 · FSA</span>
         <span class="badge hal">Halal chicken</span>
-        <span class="badge">Daily 12–9pm</span>
-        <span class="badge">4 min from Wembley Park</span>
+        <span class="badge">Daily 11am–10pm</span>
+        <span class="badge">Opposite Wembley Park station</span>
       </div>
     </div>
     <div class="hero-art" id="heroArt" aria-hidden="true"></div>
@@ -799,19 +824,19 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
   <div class="wrap visit-in">
     <div>
       <p class="eyebrow">Find us <span>/</span> HA9 0NP</p>
-      <h2 class="head">One unit, inside Boxpark</h2>
-      <p class="lede">We're on the ground floor of Boxpark Wembley, on the walk between Wembley Park station and the stadium steps. Order at the counter or ahead online for collection.</p>
+      <h2 class="head">Top of Olympic Way</h2>
+      <p class="lede">We're a ground-floor unit at 1 Olympic Way, straight across from Wembley Park station, right where the walk down to the stadium begins. Order at the counter or ahead online for collection.</p>
       <ul class="rows">
-        <li><span class="k">Address</span><span class="v"><b>1F Olympic Way</b>, Boxpark Wembley, London HA9&nbsp;0NP</span></li>
-        <li><span class="k">Open</span><span class="v"><b>Every day, 12pm – 9pm</b><br><span style="color:rgba(var(--fg-rgb),.55);font-size:14px">Match and event days run later — check Instagram</span></span></li>
-        <li><span class="k">Getting here</span><span class="v">Wembley Park (Jubilee &amp; Metropolitan) — 4 min walk<br>Wembley Stadium (Chiltern) — 6 min walk</span></li>
-        <li><span class="k">Delivery</span><span class="v"><a href="https://deliveroo.co.uk/menu/london/boxpark-wembley/ji-the-chicken-shop-wembley">Deliveroo</a> · <a href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order direct</a></span></li>
+        <li><span class="k">Address</span><span class="v"><b>1F, 1 Olympic Way</b>, Wembley Park, London HA9&nbsp;0NP</span></li>
+        <li><span class="k">Open</span><span class="v"><b>Every day, 11am – 10pm</b><br><span style="color:rgba(var(--fg-rgb),.55);font-size:14px">Match and event days run later — check Instagram</span></span></li>
+        <li><span class="k">Getting here</span><span class="v">Wembley Park (Jubilee &amp; Metropolitan) — 1 min walk, directly opposite<br>Wembley Stadium — about 10 min down Olympic Way</span></li>
+        <li><span class="k">Delivery</span><span class="v"><a href="https://deliveroo.co.uk/menu/london/boxpark-wembley/ji-the-chicken-shop-wembley">Deliveroo</a> · HungryPanda</span></li>
       </ul>
-      <p style="margin-top:26px"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Ji+Chicken+Boxpark+Wembley+HA9+0NP">Open in Maps</a></p>
+      <p style="margin-top:26px"><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Ji+Chicken%2C+1F%2C+1+Olympic+Way%2C+Wembley+Park%2C+London+HA9+0NP">Open in Maps</a></p>
     </div>
     <div class="map-card">
       <div id="mapArt" aria-hidden="true"></div>
-      <p class="cap">Olympic Way · Boxpark ground floor · Unit 1F</p>
+      <p class="cap">1 Olympic Way · Ground floor · Unit 1F</p>
     </div>
   </div>
 </section>
@@ -836,10 +861,19 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
     <p class="pdust">Seasoned with <b id="drawerPowder">salt &amp; pepper</b></p>
     <div class="tot-row"><span id="itemCountLine">0 items</span><span id="subtotal">£0.00</span></div>
     <div class="tot-row grand"><span>Total</span><b id="grandTotal">£0.00</b></div>
-    <a class="btn" id="checkoutBtn" href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order for collection</a>
+    <a class="btn" id="checkoutBtn" data-order href="https://deliveroo.co.uk/menu/london/boxpark-wembley/ji-the-chicken-shop-wembley">Send this order</a>
     <button class="clear" id="clearOrder" type="button">Clear order</button>
   </div>
 </aside>
+
+<!-- order chooser: which delivery app? -->
+<div class="osheet-scrim" id="oscrim" hidden></div>
+<div class="osheet" id="osheet" role="dialog" aria-modal="true" aria-labelledby="osheetTitle" hidden>
+  <button class="ox" id="osheetClose" type="button" aria-label="Close">×</button>
+  <h3 id="osheetTitle">Order from Ji</h3>
+  <p class="osub">Pick where you want it from — both go straight to our Wembley menu.</p>
+  <div class="olinks" id="olinks"></div>
+</div>
 
 <div class="toasts" id="toasts" aria-live="polite" aria-atomic="true"></div>
 
@@ -849,10 +883,10 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
       <a class="mark" href="#top"><b>JI</b><i>Taiwanese fried chicken</i></a>
       <a class="s" href="https://www.instagram.com/jichickens/">Instagram</a>
       <a class="s" href="https://www.facebook.com/jichickens/">Facebook</a>
-      <a class="s" href="https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu">Order</a>
+      <a class="s" data-order href="https://deliveroo.co.uk/menu/london/boxpark-wembley/ji-the-chicken-shop-wembley">Order</a>
       <p class="small">
         Five background options are built in — set <code>class="t-soy"</code>, <code>t-jade</code>, <code>t-oxblood</code>, <code>t-slate</code> or <code>t-paper</code> on the &lt;html&gt; tag, then delete the preview switcher block. Dish artwork on this page is drawn in code, so nothing ever loads broken. Real shop photos sit over the drawing where we have them — add more by dropping a JPG into <code>/images/</code> named after the dish's <code>slug</code>, or by setting <code>photo</code> on the dish in the script.<br>
-        Prices shown are our Boxpark Wembley counter prices and may differ on delivery apps. Halal chicken; seafood and sides are fried in shared oil — ask us about allergens before ordering.
+        Prices shown are our counter prices and may differ on delivery apps. Halal chicken; seafood and sides are fried in shared oil — ask us about allergens before ordering.
       </p>
     </div>
   </div>
@@ -863,9 +897,8 @@ footer{border-top:1px solid var(--line);background:var(--ink-2);padding:40px 0 5
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Restaurant","name":"Ji Chicken Wembley","servesCuisine":"Taiwanese","priceRange":"££",
-"address":{"@type":"PostalAddress","streetAddress":"1F Olympic Way, Boxpark Wembley","addressLocality":"London","postalCode":"HA9 0NP","addressCountry":"GB"},
-"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"12:00","closes":"21:00"}],
-"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","reviewCount":"284"},
+"address":{"@type":"PostalAddress","streetAddress":"1F, 1 Olympic Way","addressLocality":"Wembley Park, London","postalCode":"HA9 0NP","addressCountry":"GB"},
+"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"11:00","closes":"22:00"}],
 "sameAs":["https://www.instagram.com/jichickens/","https://www.facebook.com/jichickens/"],
 "hasMenu":"https://jichickens.co.uk/restaurant-ji-chickens-wembley-wembley-HA9/menu"}
 </script>
@@ -1124,7 +1157,7 @@ const MENU = [
     cat: 'Signature', zh: '招牌產品', note: 'The four we are known for',
     items: [
       { n: 'Popcorn Chicken', zh: '脆皮雞米花', p: '7.50', d: 'Marinated, cut small, fried till the edges go craggy. The bag empties fast.', art: 'popcorn', tags: ['halal', 'pop'], flag: 'Best seller', slug: 'popcorn-chicken', photo: 'Popcorn.png' },
-      { n: 'Crispy Chicken Breast', zh: '招牌台灣雞排', p: '9.00', d: 'Taiwan\'s most-ordered street food. Whole breast, crumbly crust, juicy through the middle.', art: 'cutlet', tags: ['halal', 'pop'], flag: 'Signature', slug: 'chicken-breast' },
+      { n: 'Crispy Chicken Breast', zh: '招牌台灣雞排', p: '9.00', d: 'Taiwan\'s most-ordered street food. Whole breast, crumbly crust, juicy through the middle.', art: 'cutlet', tags: ['halal', 'pop'], flag: 'Signature', slug: 'chicken-breast', photo: 'chicken breast.png', cut: false, pos: '50% 50%' },
       { n: 'Volcani Cheesy Chicken', zh: '爆漿起司雞排', p: '10.00', d: 'A breast folded around a block of cheese and fried until it oozes on the first tear.', art: 'cheesy', tags: ['halal'], flag: 'Cheese pull', slug: 'volcanic-cheesy-chicken', photo: 'Volanic chessy chicken.png' },
       { n: 'Crispy Chicken Wings', zh: '脆炸雞翅', p: '7.50', d: 'Seasoned and fried to gold, straight into the powder.', art: 'wings', tags: ['halal'], slug: 'chicken-wings', photo: 'wings.png' }
     ]
@@ -1136,14 +1169,14 @@ const MENU = [
       { n: 'Crispy Chicken Skin', zh: '脆炸雞皮', p: '7.50', d: 'The best part of fried chicken, served on its own. Shatters.', art: 'skin', tags: ['halal', 'pop'], slug: 'chicken-skin', photo: 'skin.png' },
       { n: 'Karaage Chicken', zh: '日式炸雞', p: '7.50', d: 'Japanese-style chunks, lighter coating, sharper crunch.', art: 'karaage', tags: ['halal'], slug: 'karaage', photo: 'kaarage chicken.png' },
       { n: 'Crunchy Thigh on Bone', zh: '金酥雞腿', p: '9.50', d: 'Bone in, crust all the way round, dark meat underneath.', art: 'drumstick', tags: ['halal'], slug: 'thigh-on-bone', photo: 'Thigh on bone.png' },
-      { n: 'Crunchy Chicken Strips', zh: '雞柳條', p: '8.00', d: 'Marinated strips fried to a hard crunch. Easiest thing to eat walking.', art: 'strips', tags: ['halal'], slug: 'chicken-strips' },
+      { n: 'Crunchy Chicken Strips', zh: '雞柳條', p: '8.00', d: 'Marinated strips fried to a hard crunch. Easiest thing to eat walking.', art: 'strips', tags: ['halal'], slug: 'chicken-strips', photo: 'strips.png', cut: false, pos: '50% 50%' },
       { n: 'Boneless Chicken Thigh', zh: '無骨雞腿排', p: '7.50', d: 'Thigh pounded out to steak size — fattier than breast, so it stays juicier.', art: 'thigh', tags: ['halal'], slug: 'boneless-thigh' }
     ]
   },
   {
     cat: 'Veggies', zh: '蔬食', note: 'Add a powder',
     items: [
-      { n: 'Crispy Chips', zh: '薯條', p: '4.00', d: 'Thick-cut and double-fried. Ask for salt and pepper on them.', art: 'chips', tags: ['veg'], slug: 'chips' },
+      { n: 'Crispy Chips', zh: '薯條', p: '4.00', d: 'Thick-cut and double-fried. Ask for salt and pepper on them.', art: 'chips', tags: ['veg'], slug: 'chips', photo: 'fries.png' },
       { n: 'Sweet Potato', zh: '炸地瓜', p: '7.00', d: 'Chunky, velvety inside. Plum powder turns these into pudding.', art: 'sweetpotato', tags: ['veg'], slug: 'sweet-potato', photo: 'Sweet potato.png' },
       { n: 'Crispy Tofu', zh: '脆炸嫩豆腐', p: '7.00', d: 'Crust on the outside, silk in the middle.', art: 'tofu', tags: ['veg'], slug: 'fried-tofu' },
       { n: 'Lotus Root Chips', zh: '脆炸藕片', p: '7.50', d: 'Sliced thin and fried to a crisp lace. For serious crunch people.', art: 'lotus', tags: ['veg', 'pop'], slug: 'lotus-root' }
@@ -1153,7 +1186,7 @@ const MENU = [
     cat: 'Seafood', zh: '海鮮', note: 'Light batter, hot oil',
     items: [
       { n: 'Crispy King Prawn', zh: '脆炸大蝦', p: '7.50', d: 'King prawns in a light coat, sweet under the crust.', art: 'prawn', tags: [], slug: 'king-prawn' },
-      { n: 'Crispy Squid', zh: '脆炸魷魚', p: '9.00', d: 'Thin batter, quick fry — crunch outside, still tender in the ring.', art: 'squid', tags: [], slug: 'crispy-squid' },
+      { n: 'Crispy Squid', zh: '脆炸魷魚', p: '9.00', d: 'Thin batter, quick fry — crunch outside, still tender in the ring.', art: 'squid', tags: [], slug: 'crispy-squid', photo: 'squid.png' },
       { n: 'Crispy Octopus', zh: '脆炸八爪魚', p: '7.50', d: 'Whole small legs, suckers and all. Chewy in the right way.', art: 'octopus', tags: [], slug: 'crispy-octopus' },
       { n: 'Crunchy Crab Sticks', zh: '香脆蟹柳棒', p: '6.50', d: 'Fried till the outside crisps and the inside goes soft and sweet.', art: 'crab', tags: [], slug: 'crab-sticks' }
     ]
@@ -1169,14 +1202,14 @@ const MENU = [
 ];
 
 const DEALS = [
-  { no: 'Meal 1', n: 'Chicken Breast & Popcorn Chicken', zh: '雞排 & 雞米花', p: '13.50', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-popcorn', d: 'Both bestsellers, one bag. Feeds two if you\'re being polite.' },
-  { no: 'Meal 2', n: 'Chicken Breast & Chicken Strips', zh: '雞排 & 雞柳', p: '14.00', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-strips', d: 'Whole breast plus a handful of strips for the table.' },
+  { no: 'Meal 1', n: 'Chicken Breast & Popcorn Chicken', zh: '雞排 & 雞米花', p: '13.50', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-popcorn', d: 'Both bestsellers, one bag. Feeds two if you\'re being polite.', photo: 'chicken breast.png', cut: false, pos: '50% 50%' },
+  { no: 'Meal 2', n: 'Chicken Breast & Chicken Strips', zh: '雞排 & 雞柳', p: '14.00', art: 'cutlet', tags: ['halal'], slug: 'deal-breast-strips', d: 'Whole breast plus a handful of strips for the table.', photo: 'chicken breast.png', cut: false, pos: '50% 50%' },
   { no: 'Meal 3', n: 'Popcorn Chicken & Chips', zh: '雞米花 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-popcorn-chips', d: 'The easy one. Everything shareable.', photo: 'Popcorn.png' },
   { no: 'Meal 4', n: 'Chicken Skin & Chips', zh: '雞皮 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-skin-chips', d: 'Shattering skin, thick-cut chips. Season them differently.', photo: 'skin.png' },
   { no: 'Meal 5', n: 'Volcani Cheesy Chicken & Chips', zh: '爆漿起司雞排 & 薯條', p: '12.50', art: 'combo', tags: ['halal'], slug: 'deal-cheesy-chips', d: 'The full set with the cheese-filled breast.', photo: 'Volanic chessy chicken.png' },
   { no: 'Meal 6', n: 'Chicken Wings & Chips', zh: '雞翅 & 薯條', p: '9.99', art: 'combo', tags: ['halal'], slug: 'deal-wings-chips', d: 'Wings straight from the fryer into the powder.', photo: 'wings.png' },
-  { no: 'Meal 7', n: 'Chicken Strips & Chips', zh: '雞柳 & 薯條', p: '10.50', art: 'combo', tags: ['halal'], slug: 'deal-strips-chips', d: 'The walk-and-eat order.' },
-  { no: 'Meal 8', n: 'Chips & Soft Drink', zh: '薯條 & 軟飲', p: '4.50', art: 'drink', tags: ['veg'], slug: 'deal-chips-drink', d: 'Chips, a cold can, done.' }
+  { no: 'Meal 7', n: 'Chicken Strips & Chips', zh: '雞柳 & 薯條', p: '10.50', art: 'combo', tags: ['halal'], slug: 'deal-strips-chips', d: 'The walk-and-eat order.', photo: 'strips.png', cut: false, pos: '50% 50%' },
+  { no: 'Meal 8', n: 'Chips & Soft Drink', zh: '薯條 & 軟飲', p: '4.50', art: 'drink', tags: ['veg'], slug: 'deal-chips-drink', d: 'Chips, a cold can, done.', photo: 'fries.png' }
 ];
 
 /* ---- render ---- */
@@ -1190,7 +1223,7 @@ function shotEl(item) {
   const img = document.createElement('img');
   img.className = 'photo'; img.alt = item.n; img.loading = 'lazy';
   /* a cut-out PNG has no background of its own — show it whole, floating on the tile */
-  const cut = /\.png$/i.test(item.photo || '');
+  const cut = item.cut !== undefined ? item.cut : /\.png$/i.test(item.photo || '');
   if (cut) fig.classList.add('cutout');
   /* item.photo = a real shot in the site folder; otherwise look for images/<slug>.jpg */
   img.src = encodeURI(item.photo || `images/${item.slug}.jpg`);
@@ -1326,16 +1359,17 @@ document.getElementById('mapArt').innerHTML = `
   <path d="M40 300 L150 40 L250 40 L360 300" fill="none" stroke="currentColor" stroke-opacity=".16" stroke-width="34"/>
   <path d="M40 300 L150 40 L250 40 L360 300" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="1" stroke-dasharray="8 10"/>
   <text x="200" y="30" text-anchor="middle" font-family="Space Mono, monospace" font-size="10" letter-spacing="3" fill="currentColor" opacity=".5">WEMBLEY PARK STN</text>
-  <rect x="150" y="120" width="100" height="60" rx="4" class="art-bg" stroke="currentColor" stroke-opacity=".2"/>
-  <text x="200" y="148" text-anchor="middle" font-family="Big Shoulders Display, Anton, sans-serif" font-weight="900" font-size="18" fill="currentColor" opacity=".75">BOXPARK</text>
-  <text x="200" y="166" text-anchor="middle" font-family="Space Mono, monospace" font-size="9" letter-spacing="2" fill="currentColor" opacity=".45">UNIT 1F</text>
+  <rect x="146" y="78" width="108" height="58" rx="4" class="art-bg" stroke="currentColor" stroke-opacity=".2"/>
+  <text x="200" y="105" text-anchor="middle" font-family="Big Shoulders Display, Anton, sans-serif" font-weight="900" font-size="17" fill="currentColor" opacity=".75">1 OLYMPIC WAY</text>
+  <text x="200" y="123" text-anchor="middle" font-family="Space Mono, monospace" font-size="9" letter-spacing="2" fill="currentColor" opacity=".45">UNIT 1F · JI</text>
   <g>
-    <circle cx="200" cy="150" r="30" fill="none" stroke="#E63122" stroke-width="1.5" opacity=".8"/>
-    <circle cx="200" cy="150" r="44" fill="none" stroke="#E63122" stroke-width="1" opacity=".35"/>
+    <circle cx="200" cy="107" r="34" fill="none" stroke="#E63122" stroke-width="1.5" opacity=".8"/>
+    <circle cx="200" cy="107" r="48" fill="none" stroke="#E63122" stroke-width="1" opacity=".35"/>
   </g>
+  <text x="264" y="60" font-family="Space Mono, monospace" font-size="10" letter-spacing="2" fill="currentColor" opacity=".45">1 MIN</text>
   <path d="M155 285 q45 -14 90 0" fill="none" stroke="rgba(242,179,61,.5)" stroke-width="2"/>
   <text x="200" y="278" text-anchor="middle" font-family="Space Mono, monospace" font-size="10" letter-spacing="3" fill="var(--gold)">STADIUM STEPS</text>
-  <text x="268" y="82" font-family="Space Mono, monospace" font-size="10" letter-spacing="2" fill="currentColor" opacity=".4">4 MIN WALK</text>
+  <text x="288" y="228" font-family="Space Mono, monospace" font-size="10" letter-spacing="2" fill="currentColor" opacity=".4">10 MIN</text>
 </svg>`;
 
 
@@ -1347,7 +1381,7 @@ const CALM = matchMedia('(prefers-reduced-motion:reduce)').matches;
 /* --- ticker: build once, duplicate for a seamless loop --- */
 const TICK_ITEMS = [
   ['台式炸雞', 'han'], ['fried to order', ''], ['halal chicken', 'solid'],
-  ['pick your powder', ''], ['boxpark wembley', 'solid'], ['open 12–9 daily', ''],
+  ['pick your powder', ''], ['1 olympic way', 'solid'], ['open 11–10 daily', ''],
   ['溫布利', 'han'], ['no.1 taiwanese fried chicken', '']
 ];
 const tickHTML = TICK_ITEMS.map(([txt, cls]) => `<b class="${cls}">${txt}</b><i>●</i>`).join('');
@@ -1466,10 +1500,58 @@ function toast(msg){
   setTimeout(() => t.remove(), 2600);
 }
 
-/* ---- open now: kitchen runs 12:00–21:00 every day (Europe/London) ---- */
+/* =========================================================================
+   ORDER LINKS — edit these two lines and every "Order" button follows.
+   Leave a url as '' and that option is hidden from the chooser.
+   ========================================================================= */
+const ORDER_LINKS = [
+  { id: 'deliveroo',   name: 'Deliveroo',    note: 'Delivery across Wembley',   colour: '#00CCBC',
+    url: 'https://deliveroo.co.uk/menu/london/boxpark-wembley/ji-the-chicken-shop-wembley' },
+  { id: 'hungrypanda', name: 'HungryPanda',  note: '熊猫外卖 · delivery',         colour: '#E4022D',
+    url: '' }   /* <-- paste the HungryPanda link here */
+];
+
+(function orderSheet(){
+  const sheet = document.getElementById('osheet'), scrim = document.getElementById('oscrim'),
+        list  = document.getElementById('olinks');
+  const live = ORDER_LINKS.filter(o => o.url);
+  let opener = null;
+
+  list.innerHTML = live.map(o => `
+    <a class="olink" href="${o.url}" target="_blank" rel="noopener">
+      <span class="oico" style="background:${o.colour}">${o.name[0]}</span>
+      <span>${o.name}<small>${o.note}</small></span>
+      <span class="arr">→</span>
+    </a>`).join('');
+
+  function open(e){
+    /* only one app live? send them straight there, no pointless click */
+    if (live.length < 2) return;
+    e.preventDefault();
+    opener = e.currentTarget;
+    scrim.hidden = sheet.hidden = false;
+    document.body.style.overflow = 'hidden';
+    sheet.querySelector('.olink')?.focus();
+  }
+  function close(){
+    scrim.hidden = sheet.hidden = true;
+    document.body.style.overflow = '';
+    opener?.focus(); opener = null;
+  }
+  document.querySelectorAll('[data-order]').forEach(b => {
+    if (live.length) b.href = live[0].url;      /* fallback if JS-less or single app */
+    b.target = '_blank'; b.rel = 'noopener';
+    b.addEventListener('click', open);
+  });
+  scrim.addEventListener('click', close);
+  document.getElementById('osheetClose').addEventListener('click', close);
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !sheet.hidden) close(); });
+})();
+
+/* ---- open now: kitchen runs 11:00–22:00 every day (Europe/London) ---- */
 (function openNow(){
   const pill = document.getElementById('statusPill'), txt = document.getElementById('statusTxt');
-  const OPEN = 12 * 60, CLOSE = 21 * 60;
+  const OPEN = 11 * 60, CLOSE = 22 * 60;
   function fmt(mins){ let h = Math.floor(mins / 60) % 24; const ap = h < 12 ? 'am' : 'pm'; h = h % 12 || 12; return `${h}${ap}`; }
   function tick(){
     let h, m;
